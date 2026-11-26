@@ -30,27 +30,7 @@ fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1071485905290736&ev=PageView&noscript=1" alt=""></noscript>
 <!-- End Meta Pixel Code -->
-html, body {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-@media (max-width: 768px) {
-  header, nav, section, main {
-    max-width: 100vw !important;
-    overflow-x: clip;
-  }
-  header .nav-actions, nav > div {
-    gap: 6px !important;
-    flex-wrap: wrap;
-  }
-  [class*="drawer"], [class*="cart-panel"], [class*="cart-drawer"] {
-    width: 100% !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
-  }
-}<style>
+<style>
 :root{
   --bg:#090a0e;--surface:#121318;--surface-2:#191a21;--surface-3:#202129;
   --text:#f5f5f7;--muted:#a0a1ad;--subtle:#757783;
@@ -60,8 +40,8 @@ html, body {
   --font:'Tajawal',sans-serif;--latin:'Outfit',sans-serif;--radius:20px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:100px;overflow-x:clip;max-width:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip;max-width:100%}
 body.modal-open{overflow:hidden}
 ::selection{background:var(--red);color:white}
 a{color:inherit;text-decoration:none}
@@ -507,7 +487,7 @@ html[dir="ltr"] .search-box .icon{right:auto;left:11px}
 /* Cart Drawer */
 dialog{color:var(--text);font-family:var(--font)}
 dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
-.cart-dialog{position:fixed;inset:0 auto 0 0;margin:0;padding:0;width:min(475px,100vw);max-width:100vw;height:100vh;height:100dvh;max-height:100dvh;border:0;border-right:1px solid var(--line-strong);background:#101116;overflow:hidden;box-shadow:30px 0 100px #0006}
+.cart-dialog{position:fixed;inset:0 auto 0 0;margin:0;padding:0;width:min(475px,100%);max-width:100%;height:100vh;height:100dvh;max-height:100dvh;border:0;border-right:1px solid var(--line-strong);background:#101116;overflow:hidden;box-shadow:30px 0 100px #0006}
 .cart-dialog[open]{display:flex;flex-direction:column;animation:drawer-in .3s cubic-bezier(.2,.8,.3,1)}
 @keyframes drawer-in{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 .drawer-header{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:19px 23px;border-bottom:1px solid var(--line);flex:none}
@@ -744,7 +724,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
   .nav-actions{margin-inline-start:auto}
   .menu-trigger{display:grid}
   .services-grid{grid-template-columns:1fr}
-  .service-card.featured,.service-card.spotify,.service-card.tod,.service-card.showflix,.service-card.gemini{grid-column:auto}
+  .service-card.featured,.service-card.spotify,.service-card.tod,.service-card.showflix,.service-card.gemini,.service-card.iptv-neo{grid-column:auto}
   .guide-card{grid-template-columns:1fr;gap:24px}
   .steps-grid{grid-template-columns:repeat(2,1fr)}
   .faq-layout{grid-template-columns:1fr;gap:28px}
@@ -753,6 +733,9 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
 }
 @media(max-width:740px){
   .container{width:calc(100% - 32px)}
+  .navbar{gap:12px}
+  .nav-whatsapp span,.track-trigger span{display:none}
+  .nav-whatsapp,.track-trigger{width:38px;height:38px;min-height:38px;padding:0}
   .hero-layout{grid-template-columns:1fr;gap:36px}
   .hero-copy{text-align:center}
   .hero-description{margin-inline:auto}
@@ -776,13 +759,32 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
   .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:520px){
-  .nav-whatsapp span,.track-trigger span{display:none}
-  .nav-whatsapp,.track-trigger{width:38px;height:38px;min-height:38px;padding:0}
+  .navbar{height:66px;gap:8px}
+  .brand{gap:8px;min-width:0}
+  .brand-mark{width:34px;height:34px;border-radius:10px}
+  .brand-name{font-size:16px}
+  .nav-actions{gap:6px;flex:none}
+  .nav-whatsapp{display:none}
+  .track-trigger span{display:none}
+  .track-trigger,.lang-toggle,.menu-trigger{width:36px;min-width:36px;height:36px;min-height:36px;padding:0;font-size:12px}
+  .cart-trigger{height:36px;min-width:auto;padding:0 8px;gap:6px}
+  .cart-trigger .icon{width:17px;height:17px}
+  .drawer-header,.drawer-body,.drawer-footer{padding-inline:16px}
+  .checkout-progress{padding:14px 12px}
+  .service-header{padding:18px 16px 14px}
+  .service-main{padding:0 16px 18px}
+  .price-comparison{margin:0 16px 14px}
+  .spotify-float{left:4px;width:205px;padding:11px 12px}
+  .featured-offer{right:4px;width:225px;padding:12px 13px}
   .payments-grid{grid-template-columns:1fr}
   .steps-grid{grid-template-columns:1fr}
   .quiz-options{grid-template-columns:1fr}
   .service-actions{width:100%}
   .service-actions .btn{flex:1}
+}
+@media(max-width:360px){
+  .brand-name{font-size:14.5px}
+  .nav-actions{gap:4px}
 }
 </style>
 </head>
@@ -908,6 +910,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
     <a href="#payment">وسائل الدفع</a>
     <a href="#reviews">آراء الزبائن</a>
     <a href="#faq">الأسئلة الشائعة</a>
+    <a href="https://wa.me/213555862000" data-wa="general" target="_blank" rel="noopener noreferrer">تواصل معنا عبر WhatsApp</a>
   </nav>
 </header>
 
