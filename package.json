@@ -1,0 +1,10 @@
+{
+  "name": "monsieur-sub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monsieur Sub - Automated Digital Subscriptions Store (Chargily Pay + Firebase + Telegram)",
+  "dependencies": {
+    "firebase-admin": "^12.7.0"
+  }
+}

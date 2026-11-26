@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monsieur Sub — اشتراكات رقمية فورية في الجزائر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-2: #0d1323;
+      --card: #11182b;
+      --card-2: #161f36;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --cyan: #06b6d4;
+      --purple: #8b5cf6;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --grad: linear-gradient(135deg, #06b6d4, #8b5cf6);
+      --radius: 16px;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background: radial-gradient(circle at 15% 10%, rgba(6,182,212,0.12), transparent 40%),
+                  radial-gradient(circle at 85% 15%, rgba(139,92,246,0.14), transparent 42%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    [dir="ltr"] body { font-family: 'Inter', 'Cairo', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+
+    /* Top Announcement Bar */
+    .announce-bar {
+      background: var(--grad);
+      color: #fff;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(7, 11, 20, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.3px;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--grad);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(6, 182, 212, 0.35);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 9px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.22); }
+    .btn-primary {
+      background: var(--grad);
+      border: none;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.28);
+    }
+    .btn-green { background: #16a34a; border: none; color: #fff; }
+    .btn-danger { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+    .btn-sm { padding: 6px 10px; font-size: 0.82rem; border-radius: 9px; }
+    .badge-count {
+      background: var(--red);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+    }
+
+    /* Container & Hero */
+    .container { max-width: 1200px; margin: 0 auto; padding: 28px 18px 60px; }
+    .hero {
+      text-align: center;
+      padding: 36px 20px 28px;
+      background: linear-gradient(180deg, rgba(22,31,54,0.75), rgba(17,24,43,0.45));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      margin-bottom: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-weight: 900;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #fff, #67e8f9, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); max-width: 650px; margin: 0 auto 20px; font-size: 1rem; }
+    .hero-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    /* Toolbar: Search & Filter */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .search-box {
+      flex: 1 1 260px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 11px 16px;
+      border-radius: 12px;
+      outline: none;
+      font-size: 0.95rem;
+    }
+    .search-box input:focus { border-color: var(--cyan); }
+    .filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+    .filter-btn.active { background: var(--grad); color: #fff; border-color: transparent; }
+
+    /* Services Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.18); }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .svc-head { display: flex; align-items: center; gap: 12px; }
+    .svc-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .svc-title { font-size: 1.18rem; font-weight: 800; }
+    .svc-sub { font-size: 0.82rem; color: var(--muted); }
+    .tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(6,182,212,0.16);
+      color: #67e8f9;
+      border: 1px solid rgba(6,182,212,0.3);
+    }
+
+    /* Plan tabs & Duration buttons */
+    .plan-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .plan-tab {
+      flex: 1;
+      text-align: center;
+      padding: 7px 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-2);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .plan-tab.active {
+      background: rgba(139,92,246,0.2);
+      border-color: var(--purple);
+      color: #fff;
+    }
+
+    .durations {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .dur-btn {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 9px 10px;
+      color: var(--text);
+      cursor: pointer;
+      text-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: relative;
+    }
+    .dur-btn.active {
+      border-color: var(--cyan);
+      background: rgba(6,182,212,0.14);
+    }
+    .dur-label { font-size: 0.82rem; color: var(--muted); font-weight: 700; }
+    .dur-price { font-size: 1rem; font-weight: 900; }
+    .save-badge {
+      position: absolute;
+      top: 6px;
+      inset-inline-end: 6px;
+      background: rgba(34,197,94,0.18);
+      color: #4ade80;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .feat-list { list-style: none; font-size: 0.84rem; color: #cbd5e1; display: grid; gap: 4px; }
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; }
+
+    /* FAQ Section */
+    .section-title { font-size: 1.4rem; font-weight: 900; margin: 42px 0 16px; }
+    .faq-grid { display: grid; gap: 10px; }
+    details.faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    details.faq-item summary { cursor: pointer; font-weight: 800; list-style: none; }
+    details.faq-item p { margin-top: 8px; color: var(--muted); font-size: 0.92rem; }
+
+    /* Drawer & Modals */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(5px);
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .overlay.open { display: flex; }
+    .modal {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .modal.wide { max-width: 980px; }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; font-weight: 700; }
+    .form-control {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--cyan); }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: var(--card);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .qty-ctrl { display: flex; align-items: center; gap: 6px; }
+    .summary-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .summary-total { font-size: 1.15rem; font-weight: 900; color: #67e8f9; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 8px; }
+
+    /* Admin Dashboard */
+    .admin-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .admin-tab {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.84rem;
+    }
+    .admin-tab.active { background: var(--grad); color: #fff; border-color: transparent; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 18px; }
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .kpi-label { font-size: 0.8rem; color: var(--muted); }
+    .kpi-val { font-size: 1.35rem; font-weight: 900; margin-top: 4px; color: #67e8f9; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th, td { padding: 10px 8px; border-bottom: 1px solid var(--border); text-align: start; }
+    th { color: var(--muted); font-weight: 700; }
+    .status-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      display: inline-block;
+    }
+    .st-pending { background: rgba(245,158,11,0.18); color: #fbbf24; }
+    .st-completed { background: rgba(34,197,94,0.18); color: #4ade80; }
+    .st-cancelled { background: rgba(239,68,68,0.18); color: #f87171; }
+    .code-box {
+      background: #050810;
+      border: 1px dashed var(--cyan);
+      padding: 12px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: #1e293b;
+      border: 1px solid var(--cyan);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 12px;
+      z-index: 100;
+      font-weight: 700;
+      display: none;
+    }
+    [dir="ltr"] .toast { transform: translateX(-50%); }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="announce-bar" id="announceBar">🔥 تسليم فوري للأكواد عبر الذهبية / CIB — استعمل كود الخصم SUB10 لتخفيض 10%</div>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="brand-logo">MS</div>
+      <span id="storeTitle">Monsieur Sub</span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-sm" id="langBtn">FR</button>
+      <button class="btn btn-sm" id="trackBtn">🔍 <span data-i18n="trackOrder">تتبع طلبي</span></button>
+      <button class="btn btn-sm" id="adminBtn">⚙️ <span data-i18n="admin">لوحة التحكم</span> <span class="badge-count" id="pendingBadge" style="display:none">0</span></button>
+      <button class="btn btn-primary btn-sm" id="cartBtn">🛒 <span data-i18n="cart">السلة</span> <span class="badge-count" id="cartBadge">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1 data-i18n="heroTitle">اشتراكاتك الرقمية بأفضل سعر في الجزائر</h1>
+    <p data-i18n="heroSub">Netflix، Spotify، TOD TV، Showflix، Gemini Plus و IPTV Neo 4K Pro — دفع آمن بالذهبية / CIB أو BaridiMob وFlexy مع تسليم سريع وضمان طوال المدة.</p>
+    <div class="hero-pills">
+      <span class="pill">⚡ <span data-i18n="pill1">تسليم تلقائي فوري عبر Chargily Pay</span></span>
+      <span class="pill">💳 <span data-i18n="pill2">الذهبية / CIB / BaridiMob / CCP / Flexy</span></span>
+      <span class="pill">🛡️ <span data-i18n="pill3">ضمان كامل ودعم عبر WhatsApp</span></span>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="ابحث عن خدمة (Netflix, IPTV, Spotify...)" />
+    </div>
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-cat="all" data-i18n="catAll">الكل</button>
+      <button class="filter-btn" data-cat="streaming" data-i18n="catStream">أفلام ورياضة</button>
+      <button class="filter-btn" data-cat="iptv">IPTV</button>
+      <button class="filter-btn" data-cat="music" data-i18n="catMusic">موسيقى</button>
+      <button class="filter-btn" data-cat="ai" data-i18n="catAi">ذكاء اصطناعي</button>
+    </div>
+  </div>
+
+  <section class="grid" id="servicesGrid"></section>
+
+  <h2 class="section-title" data-i18n="faqTitle">الأسئلة الشائعة</h2>
+  <section class="faq-grid" id="faqGrid"></section>
+</main>
+
+<footer>
+  <p>© <span id="yearNow"></span> <strong id="footerBrand">Monsieur Sub</strong> — <span data-i18n="footerNote">جميع الحقوق محفوظة • الجزائر</span></p>
+</footer>
+
+<!-- Cart / Checkout Modal -->
+<div class="overlay" id="cartOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🛒 <span data-i18n="cartTitle">سلة المشتريات وإتمام الطلب</span></h3>
+      <button class="btn btn-sm" data-close="cartOverlay">✕</button>
+    </div>
+    <div id="cartItems"></div>
+
+    <div class="form-group" style="display:flex; gap:8px; margin-top:12px;">
+      <input class="form-control" id="promoInput" placeholder="كود التخفيض (مثال: SUB10)" />
+      <button class="btn" id="applyPromoBtn" data-i18n="apply">تطبيق</button>
+    </div>
+    <div id="promoMsg" style="font-size:0.82rem; margin-bottom:10px;"></div>
+
+    <div class="form-group">
+      <label data-i18n="custName">الاسم الكامل</label>
+      <input class="form-control" id="custName" placeholder="مثال: أمين بن علي" />
+    </div>
+    <div class="form-group">
+      <label data-i18n="custPhone">رقم الهاتف (WhatsApp)</label>
+      <input class="form-control" id="custPhone" placeholder="05 / 06 / 07 ..." />
+    </div>
+    <div class="form-group">
+      <label data-i18n="payMethod">وسيلة الدفع</label>
+      <select class="form-control" id="payMethod">
+        <option value="chargily">البطاقة الذهبية / CIB — تسليم تلقائي فوري (Chargily Pay)</option>
+        <option value="baridimob">BaridiMob (تأكيد عبر WhatsApp)</option>
+        <option value="ccp">CCP (تأكيد عبر WhatsApp)</option>
+        <option value="flexy">Mobilis Flexy (+20% عمولة)</option>
+      </select>
+    </div>
+    <div id="payAccountHint" style="font-size:0.83rem; color:#67e8f9; margin-bottom:10px;"></div>
+
+    <div class="summary-box" id="cartSummary"></div>
+
+    <div style="display:grid; gap:8px;">
+      <button class="btn btn-primary" id="payChargilyBtn">⚡ ادفع الآن بالذهبية / CIB (تسليم فوري)</button>
+      <button class="btn btn-green" id="sendOrderBtn">💬 إرسال الطلب عبر WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- Track Order Modal -->
+<div class="overlay" id="trackOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🔍 <span data-i18n="trackTitle">تتبع طلبي / استرجاع الكود</span></h3>
+      <button class="btn btn-sm" data-close="trackOverlay">✕</button>
+    </div>
+    <div class="form-group">
+      <label data-i18n="orderIdLabel">رقم الطلب (Order ID)</label>
+      <input class="form-control" id="trackOrderId" placeholder="MS-XXXX-XXXX" />
+    </div>
+    <div class="form-group">
+      <label data-i18n="custPhone">رقم الهاتف المستعمل في الطلب</label>
+      <input class="form-control" id="trackPhone" placeholder="0555..." />
+    </div>
+    <button class="btn btn-primary" style="width:100%" id="doTrackBtn" data-i18n="searchOrder">استرجاع بيانات الطلب</button>
+    <div id="trackResult" style="margin-top:16px;"></div>
+  </div>
+</div>
+
+<!-- Instant Delivery Modal -->
+<div class="overlay" id="deliveryOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🎉 <span data-i18n="deliveryTitle">استلام أكواد التفعيل</span></h3>
+      <button class="btn btn-sm" data-close="deliveryOverlay">✕</button>
+    </div>
+    <div id="deliveryBody">جاري التحقق من حالة الدفع...</div>
+  </div>
+</div>
+
+<!-- Admin Dashboard Modal -->
+<div class="overlay" id="adminOverlay">
+  <div class="modal wide">
+    <div class="modal-head">
+      <h3>⚙️ لوحة تحكم Monsieur Sub <span id="syncModeTag" class="tag" style="margin-inline-start:8px;">وضع محلي</span></h3>
+      <button class="btn btn-sm" data-close="adminOverlay">✕</button>
+    </div>
+    <div id="adminLockView">
+      <div class="form-group">
+        <label>الرمز السري للوحة التحكم (الافتراضي: 1234)</label>
+        <input type="password" class="form-control" id="adminPinInput" placeholder="أدخل الرمز السري" />
+      </div>
+      <button class="btn btn-primary" id="adminUnlockBtn">دخول لوحة التحكم</button>
+    </div>
+    <div id="adminPanelView" style="display:none;">
+      <div class="admin-tabs" id="adminTabs">
+        <button class="admin-tab active" data-tab="stats">📊 الإحصائيات</button>
+        <button class="admin-tab" data-tab="orders">🧾 الطلبات والمبيعات</button>
+        <button class="admin-tab" data-tab="renewals">🔁 التجديدات</button>
+        <button class="admin-tab" data-tab="stock">🔑 مخزون الأكواد</button>
+        <button class="admin-tab" data-tab="promos">🏷️ أكواد الخصم</button>
+        <button class="admin-tab" data-tab="services">📦 الخدمات والأسعار</button>
+        <button class="admin-tab" data-tab="settings">⚙️ الإعدادات والدفع</button>
+      </div>
+      <div id="adminBody"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+// =========================================================================
+// 1) إعدادات Firebase (الصق بيانات مشروعك من Firebase Console هنا)
+// =========================================================================
+const CUSTOM_FIREBASE_CONFIG = {
+  // apiKey: "YOUR_API_KEY",
+  // authDomain: "YOUR_PROJECT.firebaseapp.com",
+  // projectId: "YOUR_PROJECT_ID",
+  // storageBucket: "YOUR_PROJECT.appspot.com",
+  // messagingSenderId: "YOUR_SENDER_ID",
+  // appId: "YOUR_APP_ID"
+};
+const APP_ID = 'monsieur-sub';
+
+// =========================================================================
+// 2) البيانات الافتراضية للمتجر
+// =========================================================================
+const DEFAULT_CONFIG = {
+  storeName: 'Monsieur Sub',
+  whatsapp: '213555862000',
+  announcement: '🔥 تسليم فوري للأكواد عبر الذهبية / CIB — استعمل كود الخصم SUB10 لتخفيض 10%',
+  adminPin: '1234',
+  flexyPercent: 20,
+  payments: {
+    baridimob: 'RIP BaridiMob: 00799999000000000000',
+    ccp: 'CCP: 00000000 Clé 00 — Nom: Monsieur Sub',
+    flexy: 'Mobilis Flexy: 06XX XX XX XX (+20% عمولة)'
+  },
+  promos: [
+    { code: 'SUB10', discount: 10, active: true }
+  ],
+  faq: [
+    { q: 'كيف أستلم الكود بعد الدفع بالبطاقة الذهبية أو CIB؟', a: 'فور نجاح الدفع عبر بوابة Chargily Pay، يظهر كود التفعيل مباشرة على شاشتك مع إمكانية نسخه، ويمكنك استرجاعه في أي وقت من زر «تتبع طلبي».' },
+    { q: 'كم يستغرق التفعيل عبر BaridiMob أو CCP أو Flexy؟', a: 'بعد إرسال وصل الدفع عبر WhatsApp يتم التحقق وتفعيل اشتراكك في مدة تتراوح بين 5 و15 دقيقة.' },
+    { q: 'هل يوجد ضمان على الاشتراكات؟', a: 'نعم، جميع اشتراكاتنا مضمونة طوال مدة الاشتراك مع دعم فني سريع على WhatsApp.' }
+  ],
+  services: [
+    {
+      id: 'netflix', name: 'Netflix', category: 'streaming', color: '#e50914', badge: '4K UHD',
+      subtitle: 'حساب رسمي مستقر بدون انقطاع',
+      features: ['جودة 4K Ultra HD', 'بروفايل خاص برمز PIN', 'ضمان كامل المدة'],
+      plans: [
+        { id: 'tv', name: 'Pour TV (4K)', prices: { 1: 750, 3: 2100, 6: 3900, 12: 7200 } },
+        { id: 'mobile', name: 'Mobile / PC', prices: { 1: 550, 3: 1500, 6: 2800, 12: 5200 } }
+      ]
+    },
+    {
+      id: 'iptv-neo', name: 'IPTV Neo 4K Pro', category: 'iptv', color: '#06b6d4', badge: '4K PRO',
+      subtitle: 'أقوى سيرفر قنوات رياضية وأفلام 4K',
+      features: ['جميع القنوات الرياضية والعالمية', 'مكتبة أفلام ومسلسلات محدثة', 'يعمل على TV و الهاتف والكمبيوتر'],
+      plans: [
+        { id: 'pro4k', name: 'Neo 4K Pro', prices: { 1: 1000, 3: 2000, 6: 3000, 12: 4200 } }
+      ]
+    },
+    {
+      id: 'spotify', name: 'Spotify Premium', category: 'music', color: '#1db954', badge: 'بدون إعلانات',
+      subtitle: 'تفعيل مباشر على حسابك الشخصي',
+      features: ['استماع بدون إعلانات', 'تحميل الأغاني بدون إنترنت', 'جودة صوت عالية'],
+      plans: [
+        { id: 'individual', name: 'Individual', prices: { 1: 600, 3: 1600, 6: 2900, 12: 5000 } }
+      ]
+    },
+    {
+      id: 'tod', name: 'TOD TV', category: 'streaming', color: '#7c3aed', badge: 'beIN Sports',
+      subtitle: 'البث الرسمي لمباريات beIN Sports بجودة عالية',
+      features: ['دوري أبطال أوروبا والدوريات الكبرى', 'بث مباشر بدون تقطيع', 'أفلام ومسلسلات حصرية'],
+      plans: [
+        { id: 'total', name: 'Total Sports 4K', prices: { 1: 2200, 3: 6000, 6: 11000, 12: 20000 } },
+        { id: 'entertainment', name: 'Entertainment', prices: { 1: 1200, 3: 3200, 6: 6000, 12: 10500 } }
+      ]
+    },
+    {
+      id: 'showflix', name: 'Showflix 1001', category: 'streaming', color: '#f97316', badge: 'عروض خاصة',
+      subtitle: 'منصة شاملة للأفلام والمسلسلات العربية والعالمية',
+      features: ['مكتبة ضخمة ومترجمة', 'تطبيق سريع على كل الأجهزة', 'تفعيل فوري'],
+      plans: [
+        { id: 'standard', name: 'Standard HD', prices: { 1: 850, 3: 1850, 6: 3200, 12: 4500 } }
+      ]
+    },
+    {
+      id: 'gemini', name: 'Gemini Plus', category: 'ai', color: '#3b82f6', badge: 'AI PRO',
+      subtitle: 'وصول كامل لأحدث نماذج الذكاء الاصطناعي',
+      features: ['نماذج متقدمة وسريعة', 'توليد نصوص وأكواد وتحليل ملفات', 'تفعيل مضمون'],
+      plans: [
+        { id: 'pro', name: 'AI Pro Access', prices: { 1: 1500, 3: 4000, 6: 7500, 12: 14000 } }
+      ]
+    }
+  ]
+};
+
+const I18N = {
+  ar: {
+    trackOrder: 'تتبع طلبي', admin: 'لوحة التحكم', cart: 'السلة',
+    heroTitle: 'اشتراكاتك الرقمية بأفضل سعر في الجزائر',
+    heroSub: 'Netflix، Spotify، TOD TV، Showflix، Gemini Plus و IPTV Neo 4K Pro — دفع آمن بالذهبية / CIB أو BaridiMob وFlexy مع تسليم سريع وضمان طوال المدة.',
+    pill1: 'تسليم تلقائي فوري عبر Chargily Pay', pill2: 'الذهبية / CIB / BaridiMob / CCP / Flexy', pill3: 'ضمان كامل ودعم عبر WhatsApp',
+    catAll: 'الكل', catStream: 'أفلام ورياضة', catMusic: 'موسيقى', catAi: 'ذكاء اصطناعي',
+    faqTitle: 'الأسئلة الشائعة', footerNote: 'جميع الحقوق محفوظة • الجزائر',
+    cartTitle: 'سلة المشتريات وإتمام الطلب', apply: 'تطبيق', custName: 'الاسم الكامل', custPhone: 'رقم الهاتف (WhatsApp)',
+    payMethod: 'وسيلة الدفع', trackTitle: 'تتبع طلبي / استرجاع الكود', orderIdLabel: 'رقم الطلب (Order ID)',
+    searchOrder: 'استرجاع بيانات الطلب', deliveryTitle: 'استلام أكواد التفعيل',
+    addCart: 'أضف للسلة', quickOrder: 'اطلب الآن', monthLabel: (m) => m === 1 ? 'شهر واحد' : (m === 3 ? '3 أشهر' : (m === 6 ? '6 أشهر' : `${m} شهر`))
+  },
+  fr: {
+    trackOrder: 'Suivre commande', admin: 'Admin', cart: 'Panier',
+    heroTitle: 'Vos abonnements numériques au meilleur prix en Algérie',
+    heroSub: 'Netflix, Spotify, TOD TV, Showflix, Gemini Plus & IPTV Neo 4K Pro — Paiement sécurisé Edahabia/CIB, BaridiMob ou Flexy avec livraison rapide.',
+    pill1: 'Livraison auto via Chargily Pay', pill2: 'Edahabia / CIB / BaridiMob / CCP / Flexy', pill3: 'Garantie complète & Support WhatsApp',
+    catAll: 'Tous', catStream: 'Films & Sport', catMusic: 'Musique', catAi: 'IA',
+    faqTitle: 'Questions Fréquentes', footerNote: 'Tous droits réservés • Algérie',
+    cartTitle: 'Panier & Validation', apply: 'Appliquer', custName: 'Nom complet', custPhone: 'Téléphone (WhatsApp)',
+    payMethod: 'Mode de paiement', trackTitle: 'Suivre ma commande / Code', orderIdLabel: 'Numéro de commande',
+    searchOrder: 'Récupérer ma commande', deliveryTitle: 'Vos codes d’activation',
+    addCart: 'Ajouter', quickOrder: 'Commander', monthLabel: (m) => `${m} mois`
+  }
+};
+
+// =========================================================================
+// 3) الحالة والتخزين المحلي + مزامنة Firebase
+// =========================================================================
+const STORAGE_KEYS = {
+  config: 'ms_config_v12',
+  orders: 'ms_orders_v12',
+  stock: 'ms_stock_v12',
+  cart: 'ms_cart_v12'
+};
+
+let lang = 'ar';
+let activeCat = 'all';
+let searchTerm = '';
+let config = loadJSON(STORAGE_KEYS.config, DEFAULT_CONFIG);
+let orders = loadJSON(STORAGE_KEYS.orders, []);
+let stock = loadJSON(STORAGE_KEYS.stock, []);
+let cart = loadJSON(STORAGE_KEYS.cart, []);
+let appliedPromo = null;
+let selections = {};
+let adminUnlocked = false;
+let activeAdminTab = 'stats';
+
+// Firebase handles (optional if user pastes CUSTOM_FIREBASE_CONFIG)
+let fbDb = null;
+let fbRefs = null;
+let fbMod = null;
+
+function loadJSON(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : structuredClone(fallback);
+  } catch { return structuredClone(fallback); }
+}
+
+function saveLocal() {
+  localStorage.setItem(STORAGE_KEYS.config, JSON.stringify(config));
+  localStorage.setItem(STORAGE_KEYS.orders, JSON.stringify(orders));
+  localStorage.setItem(STORAGE_KEYS.stock, JSON.stringify(stock));
+  localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(cart));
+}
+
+async function syncConfigCloud() {
+  saveLocal();
+  if (fbDb && fbRefs && fbMod) {
+    try { await fbMod.setDoc(fbRefs.configDoc, config, { merge: true }); } catch {}
+  }
+}
+
+async function syncOrderCloud(order) {
+  saveLocal();
+  if (fbDb && fbRefs && fbMod) {
+    try { await fbMod.setDoc(fbMod.doc(fbRefs.ordersCol, order.id), order, { merge: true }); } catch {}
+  }
+}
+
+async function initFirebaseIfConfigured() {
+  if (!CUSTOM_FIREBASE_CONFIG || !CUSTOM_FIREBASE_CONFIG.apiKey) return;
+  try {
+    const [{ initializeApp }, { getAuth, signInAnonymously }, fs] = await Promise.all([
+      import('https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js')
+    ]);
+    const app = initializeApp(CUSTOM_FIREBASE_CONFIG);
+    const auth = getAuth(app);
+    await signInAnonymously(auth);
+    fbDb = fs.getFirestore(app);
+    fbMod = fs;
+    fbRefs = {
+      configDoc: fs.doc(fbDb, 'artifacts', APP_ID, 'public', 'data', 'store', 'config'),
+      ordersCol: fs.collection(fbDb, 'artifacts', APP_ID, 'public', 'data', 'orders')
+    };
+
+    fs.onSnapshot(fbRefs.configDoc, (snap) => {
+      if (snap.exists()) {
+        config = { ...DEFAULT_CONFIG, ...snap.data() };
+        saveLocal();
+        renderAll();
+      }
+    }, () => {});
+
+    fs.onSnapshot(fbRefs.ordersCol, (snap) => {
+      const cloudOrders = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      if (cloudOrders.length) {
+        const map = new Map(orders.map((o) => [o.id, o]));
+        cloudOrders.forEach((o) => map.set(o.id, o));
+        orders = Array.from(map.values()).sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+        saveLocal();
+        updateBadges();
+        if (adminUnlocked) renderAdminBody();
+      }
+    }, () => {});
+
+    const tag = document.getElementById('syncModeTag');
+    if (tag) tag.textContent = 'متصل بـ Firebase ☁️';
+  } catch {
+    // Silent fallback to localStorage
+  }
+}
+
+const $ = (id) => document.getElementById(id);
+function toast(msg) {
+  const el = $('toast');
+  el.textContent = msg;
+  el.style.display = 'block';
+  clearTimeout(window.__t);
+  window.__t = setTimeout(() => (el.style.display = 'none'), 3000);
+}
+function formatDA(n) { return `${Number(n || 0).toLocaleString('fr-DZ')} DA`; }
+
+// =========================================================================
+// 4) عرض المتجر والمنتجات
+// =========================================================================
+function ensureSelections() {
+  for (const s of config.services) {
+    if (!selections[s.id]) {
+      const firstPlan = s.plans[0];
+      const firstMonth = Number(Object.keys(firstPlan.prices)[0] || 1);
+      selections[s.id] = { planId: firstPlan.id, months: firstMonth };
+    }
+  }
+}
+
+function renderServices() {
+  ensureSelections();
+  const grid = $('servicesGrid');
+  const q = searchTerm.trim().toLowerCase();
+  const list = config.services.filter((s) => {
+    const matchCat = activeCat === 'all' || s.category === activeCat;
+    const matchQ = !q || s.name.toLowerCase().includes(q) || (s.subtitle || '').toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  if (!list.length) {
+    grid.innerHTML = `<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:30px;">لا توجد نتائج مطابقة للبحث.</p>`;
+    return;
+  }
+
+  grid.innerHTML = list.map((s) => {
+    const sel = selections[s.id];
+    const plan = s.plans.find((p) => p.id === sel.planId) || s.plans[0];
+    const entries = Object.entries(plan.prices).map(([m, p]) => [Number(m), Number(p)]).sort((a, b) => a[0] - b[0]);
+    const baseMonthly = plan.prices[1] || entries[0]?.[1] || 0;
+
+    const plansHtml = s.plans.length > 1 ? `
+      <div class="plan-tabs">
+        ${s.plans.map((p) => `<button class="plan-tab ${p.id === plan.id ? 'active' : ''}" data-act="plan" data-svc="${s.id}" data-plan="${p.id}">${p.name}</button>`).join('')}
+      </div>` : '';
+
+    const durHtml = entries.map(([m, price]) => {
+      const savePct = m > 1 && baseMonthly > 0 ? Math.round((1 - price / (baseMonthly * m)) * 100) : 0;
+      return `
+        <button class="dur-btn ${sel.months === m ? 'active' : ''}" data-act="dur" data-svc="${s.id}" data-m="${m}">
+          ${savePct >= 5 ? `<span class="save-badge">−${savePct}%</span>` : ''}
+          <span class="dur-label">${I18N[lang].monthLabel(m)}</span>
+          <span class="dur-price">${formatDA(price)}</span>
+        </button>`;
+    }).join('');
+
+    return `
+      <article class="card">
+        <div class="card-top">
+          <div class="svc-head">
+            <div class="svc-icon" style="background:${s.color}">${s.name.slice(0, 2).toUpperCase()}</div>
+            <div>
+              <div class="svc-title">${s.name}</div>
+              <div class="svc-sub">${s.subtitle || ''}</div>
+            </div>
+          </div>
+          ${s.badge ? `<span class="tag">${s.badge}</span>` : ''}
+        </div>
+        ${plansHtml}
+        <div class="durations">${durHtml}</div>
+        <ul class="feat-list">${(s.features || []).map((f) => `<li>✓ ${f}</li>`).join('')}</ul>
+        <div class="card-actions">
+          <button class="btn" data-act="add" data-svc="${s.id}">🛒 ${I18N[lang].addCart}</button>
+          <button class="btn btn-primary" data-act="quick" data-svc="${s.id}">⚡ ${I18N[lang].quickOrder}</button>
+        </div>
+      </article>`;
+  }).join('');
+}
+
+function renderFaq() {
+  $('faqGrid').innerHTML = (config.faq || []).map((f) => `
+    <details class="faq-item">
+      <summary>${f.q}</summary>
+      <p>${f.a}</p>
+    </details>`).join('');
+}
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  $('langBtn').textContent = lang === 'ar' ? 'FR' : 'عربي';
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const k = el.getAttribute('data-i18n');
+    if (typeof I18N[lang][k] === 'string') el.textContent = I18N[lang][k];
+  });
+  renderServices();
+}
+
+function updateBadges() {
+  const qty = cart.reduce((a, i) => a + i.qty, 0);
+  $('cartBadge').textContent = qty;
+  const pend = orders.filter((o) => o.status === 'pending').length;
+  $('pendingBadge').textContent = pend;
+  $('pendingBadge').style.display = pend > 0 ? 'inline-grid' : 'none';
+}
+
+function renderAll() {
+  $('storeTitle').textContent = config.storeName;
+  $('footerBrand').textContent = config.storeName;
+  $('announceBar').textContent = config.announcement;
+  $('yearNow').textContent = new Date().getFullYear();
+  renderServices();
+  renderFaq();
+  updateBadges();
+}
+
+// =========================================================================
+// 5) السلة والحساب والدفع (Chargily Pay + WhatsApp)
+// =========================================================================
+function addToCart(svcId, openCartAfter = false) {
+  const s = config.services.find((x) => x.id === svcId);
+  if (!s) return;
+  const sel = selections[svcId];
+  const plan = s.plans.find((p) => p.id === sel.planId) || s.plans[0];
+  const unitPrice = Number(plan.prices[sel.months]);
+  const key = `${s.id}__${plan.id}__${sel.months}`;
+  const existing = cart.find((i) => i.key === key);
+  if (existing) existing.qty += 1;
+  else cart.push({ key, serviceId: s.id, serviceName: s.name, planId: plan.id, planName: plan.name, months: sel.months, unitPrice, qty: 1 });
+  saveLocal();
+  updateBadges();
+  if (openCartAfter) { renderCart(); $('cartOverlay').classList.add('open'); }
+  else toast(`تمت إضافة ${s.name} إلى السلة`);
+}
+
+function calcTotals() {
+  const subtotal = cart.reduce((a, i) => a + i.unitPrice * i.qty, 0);
+  const discount = appliedPromo ? Math.round((subtotal * appliedPromo.discount) / 100) : 0;
+  const afterPromo = Math.max(0, subtotal - discount);
+  const method = $('payMethod').value;
+  const flexyFee = method === 'flexy' ? Math.round((afterPromo * (config.flexyPercent || 20)) / 100) : 0;
+  const total = afterPromo + flexyFee;
+  return { subtotal, discount, flexyFee, total, method };
+}
+
+function renderCart() {
+  const box = $('cartItems');
+  if (!cart.length) {
+    box.innerHTML = `<p style="color:var(--muted); text-align:center; padding:18px;">السلة فارغة حاليًا.</p>`;
+  } else {
+    box.innerHTML = cart.map((i, idx) => `
+      <div class="cart-item">
+        <div>
+          <strong>${i.serviceName}</strong> — ${i.planName} (${I18N[lang].monthLabel(i.months)})
+          <div style="font-size:0.84rem; color:#67e8f9;">${formatDA(i.unitPrice * i.qty)}</div>
+        </div>
+        <div class="qty-ctrl">
+          <button class="btn btn-sm" data-cact="dec" data-idx="${idx}">−</button>
+          <span>${i.qty}</span>
+          <button class="btn btn-sm" data-cact="inc" data-idx="${idx}">+</button>
+          <button class="btn btn-sm btn-danger" data-cact="del" data-idx="${idx}">🗑</button>
+        </div>
+      </div>`).join('');
+  }
+
+  const { subtotal, discount, flexyFee, total, method } = calcTotals();
+  $('payAccountHint').textContent = method === 'chargily'
+    ? '⚡ الدفع مؤمّن عبر بوابة Chargily Pay — يصلك الكود فورًا بعد الدفع.'
+    : (config.payments[method] || '');
+
+  $('payChargilyBtn').style.display = method === 'chargily' ? 'inline-flex' : 'none';
+  $('sendOrderBtn').style.display = method === 'chargily' ? 'none' : 'inline-flex';
+
+  $('cartSummary').innerHTML = `
+    <div class="summary-row"><span>المجموع الفرعي</span><strong>${formatDA(subtotal)}</strong></div>
+    ${discount > 0 ? `<div class="summary-row" style="color:#4ade80;"><span>خصم (${appliedPromo.code} −${appliedPromo.discount}%)</span><strong>−${formatDA(discount)}</strong></div>` : ''}
+    ${flexyFee > 0 ? `<div class="summary-row" style="color:#fbbf24;"><span>عمولة Flexy (+${config.flexyPercent || 20}%)</span><strong>+${formatDA(flexyFee)}</strong></div>` : ''}
+    <div class="summary-row summary-total"><span>الإجمالي للدفع</span><span>${formatDA(total)}</span></div>`;
+}
+
+async function checkoutChargily() {
+  if (!cart.length) return toast('السلة فارغة!');
+  const name = $('custName').value.trim();
+  const phone = $('custPhone').value.trim();
+  if (!name || !phone) return toast('يرجى إدخال الاسم ورقم الهاتف');
+
+  const btn = $('payChargilyBtn');
+  btn.disabled = true;
+  btn.textContent = 'جاري إنشاء جلسة الدفع...';
+
+  try {
+    const res = await fetch('/api/chargily/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: cart,
+        customer: { name, phone, lang },
+        promoCode: appliedPromo?.code || ''
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.checkoutUrl) {
+      throw new Error(data.error || 'تأكد من نشر الموقع على Vercel وإضافة مفاتيح Chargily');
+    }
+    cart = [];
+    saveLocal();
+    window.location.href = data.checkoutUrl;
+  } catch (err) {
+    toast(err.message);
+    btn.disabled = false;
+    btn.textContent = '⚡ ادفع الآن بالذهبية / CIB (تسليم فوري)';
+  }
+}
+
+async function checkoutWhatsApp() {
+  if (!cart.length) return toast('السلة فارغة!');
+  const name = $('custName').value.trim();
+  const phone = $('custPhone').value.trim();
+  if (!name || !phone) return toast('يرجى إدخال الاسم ورقم الهاتف');
+
+  const { total, method } = calcTotals();
+  const orderId = 'MS-' + Date.now().toString(36).toUpperCase();
+  const maxMonths = Math.max(...cart.map((i) => i.months));
+  const summary = cart.map((i) => `${i.serviceName} (${i.planName} - ${i.months}m) ×${i.qty}`).join(' + ');
+
+  const newOrder = {
+    id: orderId,
+    customerName: name,
+    customerPhone: phone,
+    items: structuredClone(cart),
+    itemsSummary: summary,
+    months: maxMonths,
+    total,
+    paymentMethod: method,
+    promoCode: appliedPromo?.code || '',
+    status: 'pending',
+    createdAt: new Date().toISOString()
+  };
+
+  orders.unshift(newOrder);
+  await syncOrderCloud(newOrder);
+  updateBadges();
+
+  const text = encodeURIComponent(
+    `سلام، أريد تأكيد طلبي من ${config.storeName}:\n` +
+    `🧾 رقم الطلب: ${orderId}\n` +
+    `👤 الاسم: ${name}\n` +
+    `📱 الهاتف: ${phone}\n` +
+    `📦 الطلب: ${summary}\n` +
+    `💳 وسيلة الدفع: ${method.toUpperCase()}\n` +
+    `💰 المبلغ الإجمالي: ${formatDA(total)}`
+  );
+
+  cart = [];
+  saveLocal();
+  updateBadges();
+  $('cartOverlay').classList.remove('open');
+  window.open(`https://wa.me/${config.whatsapp}?text=${text}`, '_blank');
+}
+
+// =========================================================================
+// 6) استلام الأكواد التلقائي وتتبع الطلب
+// =========================================================================
+function renderOrderLookupHtml(data) {
+  if (data.status === 'pending') {
+    return `<div class="summary-box">⏳ الطلب <strong>${data.id}</strong> قيد تأكيد الدفع... يرجى الانتظار بضع ثوانٍ ثم إعادة المحاولة.</div>`;
+  }
+  const codes = data.deliveredCodes || [];
+  const codesHtml = codes.length
+    ? codes.map((c) => `
+      <div class="code-box">
+        <div>
+          <div style="font-size:0.78rem; color:var(--muted);">${c.serviceName} (${c.planName} - ${c.months}m)</div>
+          <strong>${c.code}</strong>
+        </div>
+        <button class="btn btn-sm btn-primary" onclick="navigator.clipboard.writeText('${c.code.replace(/'/g, "\\'")}'); alert('تم نسخ الكود!')">نسخ</button>
+      </div>`).join('')
+    : `<div class="summary-box" style="border-color:var(--amber);">✅ تم تأكيد الدفع بنجاح للطلب <strong>${data.id}</strong>. سيتم تسليم الكود يدويًا عبر WhatsApp خلال دقائق بسبب نفاد المخزون الفوري.</div>`;
+
+  return `
+    <div style="margin-bottom:10px; font-size:0.9rem;">
+      رقم الطلب: <strong>${data.id}</strong> • الإجمالي: <strong>${formatDA(data.total)}</strong>
+    </div>
+    ${codesHtml}`;
+}
+
+async function checkReturnFromChargily() {
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get('orderId');
+  const token = params.get('token');
+  const pay = params.get('pay');
+  if (!orderId) return;
+
+  $('deliveryOverlay').classList.add('open');
+  if (pay === 'failed') {
+    $('deliveryBody').innerHTML = `<div class="summary-box" style="border-color:var(--red);">❌ لم تكتمل عملية الدفع للطلب <strong>${orderId}</strong>. يمكنك إعادة المحاولة في أي وقت.</div>`;
+    return;
+  }
+
+  for (let attempt = 0; attempt < 6; attempt++) {
+    try {
+      const res = await fetch(`/api/chargily/order?orderId=${encodeURIComponent(orderId)}&token=${encodeURIComponent(token || '')}`);
+      const data = await res.json();
+      if (res.ok) {
+        $('deliveryBody').innerHTML = renderOrderLookupHtml(data);
+        if (data.status === 'completed') break;
+      } else {
+        $('deliveryBody').innerHTML = `<div class="summary-box">${data.error || 'تعذر جلب الطلب'}</div>`;
+        break;
+      }
+    } catch {
+      $('deliveryBody').innerHTML = `<div class="summary-box">تعذر الاتصال بالخادم.</div>`;
+      break;
+    }
+    await new Promise((r) => setTimeout(r, 2500));
+  }
+}
+
+// =========================================================================
+// 7) لوحة التحكم (الإحصائيات، الطلبات، التجديدات، الأكواد، الخصم، الإعدادات)
+// =========================================================================
+function renderAdminBody() {
+  const body = $('adminBody');
+  const completed = orders.filter((o) => o.status === 'completed');
+
+  if (activeAdminTab === 'stats') {
+    const now = new Date();
+    const todayStr = now.toISOString().slice(0, 10);
+    const monthStr = now.toISOString().slice(0, 7);
+    const totalRev = completed.reduce((a, o) => a + Number(o.total || 0), 0);
+    const monthRev = completed.filter((o) => (o.createdAt || '').startsWith(monthStr)).reduce((a, o) => a + Number(o.total || 0), 0);
+    const todayRev = completed.filter((o) => (o.createdAt || '').startsWith(todayStr)).reduce((a, o) => a + Number(o.total || 0), 0);
+    const rate = orders.length ? Math.round((completed.length / orders.length) * 100) : 0;
+
+    const byPay = {};
+    completed.forEach((o) => { byPay[o.paymentMethod] = (byPay[o.paymentMethod] || 0) + Number(o.total || 0); });
+
+    body.innerHTML = `
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">إجمالي المداخيل</div><div class="kpi-val">${formatDA(totalRev)}</div></div>
+        <div class="kpi"><div class="kpi-label">مداخيل هذا الشهر</div><div class="kpi-val">${formatDA(monthRev)}</div></div>
+        <div class="kpi"><div class="kpi-label">مداخيل اليوم</div><div class="kpi-val">${formatDA(todayRev)}</div></div>
+        <div class="kpi"><div class="kpi-label">نسبة التأكيد</div><div class="kpi-val">${rate}% (${completed.length}/${orders.length})</div></div>
+      </div>
+      <div class="summary-box">
+        <strong>المداخيل حسب وسيلة الدفع:</strong>
+        <div style="margin-top:8px; display:grid; gap:6px;">
+          ${Object.entries(byPay).map(([k, v]) => `<div class="summary-row"><span>${k.toUpperCase()}</span><strong>${formatDA(v)}</strong></div>`).join('') || '<span style="color:var(--muted)">لا توجد مبيعات مكتملة بعد.</span>'}
+        </div>
+      </div>`;
+  } else if (activeAdminTab === 'orders') {
+    body.innerHTML = `
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
+        <button class="btn btn-sm btn-primary" id="addManualSaleBtn">+ تسجيل بيعة يدوية</button>
+        <button class="btn btn-sm" id="exportCsvBtn">📥 تصدير Excel (CSV)</button>
+      </div>
+      <div id="manualSaleBox" style="display:none; background:var(--card); padding:14px; border-radius:12px; margin-bottom:14px; border:1px solid var(--border);">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px;">
+          <input class="form-control" id="mName" placeholder="اسم الزبون" />
+          <input class="form-control" id="mPhone" placeholder="رقم الهاتف" />
+          <input class="form-control" id="mItem" placeholder="الخدمة (مثال: IPTV 12m)" />
+          <input class="form-control" id="mMonths" type="number" value="1" placeholder="عدد الأشهر" />
+          <input class="form-control" id="mTotal" type="number" placeholder="المبلغ بالدج" />
+          <select class="form-control" id="mPay">
+            <option value="baridimob">BaridiMob</option>
+            <option value="ccp">CCP</option>
+            <option value="flexy">Flexy</option>
+            <option value="chargily">Chargily</option>
+          </select>
+        </div>
+        <button class="btn btn-green btn-sm" style="margin-top:10px;" id="saveManualSaleBtn">حفظ البيعة كمكتملة ✓</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>الطلب</th><th>الزبون</th><th>التفاصيل</th><th>المبلغ</th><th>الدفع</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+          <tbody>
+            ${orders.map((o) => `
+              <tr>
+                <td><strong>${o.id}</strong><br><small style="color:var(--muted)">${(o.createdAt || '').slice(0, 10)}</small></td>
+                <td>${o.customerName}<br><small>${o.customerPhone}</small></td>
+                <td>${o.itemsSummary || '-'}</td>
+                <td><strong>${formatDA(o.total)}</strong></td>
+                <td>${(o.paymentMethod || '').toUpperCase()}</td>
+                <td><span class="status-pill st-${o.status}">${o.status === 'completed' ? 'مكتمل ✓' : (o.status === 'pending' ? 'قيد الانتظار' : 'ملغي')}</span></td>
+                <td style="display:flex; gap:4px; flex-wrap:wrap;">
+                  ${o.status !== 'completed' ? `<button class="btn btn-sm btn-green" data-oact="complete" data-oid="${o.id}">تأكيد + كود</button>` : ''}
+                  ${o.status !== 'cancelled' ? `<button class="btn btn-sm btn-danger" data-oact="cancel" data-oid="${o.id}">إلغاء</button>` : ''}
+                </td>
+              </tr>`).join('') || '<tr><td colspan="7" style="text-align:center; color:var(--muted);">لا توجد طلبات بعد.</td></tr>'}
+          </tbody>
+        </table>
+      </div>`;
+  } else if (activeAdminTab === 'renewals') {
+    const withExp = completed.filter((o) => o.expiresAt).sort((a, b) => a.expiresAt.localeCompare(b.expiresAt));
+    body.innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>الزبون</th><th>الاشتراك</th><th>تاريخ الانتهاء</th><th>المتبقي</th><th>تذكير</th></tr></thead>
+          <tbody>
+            ${withExp.map((o) => {
+              const days = Math.ceil((new Date(o.expiresAt) - new Date()) / 86400000);
+              const msg = encodeURIComponent(`مرحباً ${o.customerName}، نذكرك أن اشتراكك (${o.itemsSummary}) من ${config.storeName} قارب على الانتهاء. هل ترغب في التجديد بنفس السعر؟`);
+              return `<tr>
+                <td>${o.customerName}<br><small>${o.customerPhone}</small></td>
+                <td>${o.itemsSummary}</td>
+                <td>${o.expiresAt.slice(0, 10)}</td>
+                <td><span class="status-pill ${days <= 5 ? 'st-pending' : 'st-completed'}">${days} يوم</span></td>
+                <td><a class="btn btn-sm btn-green" target="_blank" href="https://wa.me/${String(o.customerPhone).replace(/^0/, '213')}?text=${msg}">تذكير WhatsApp</a></td>
+              </tr>`;
+            }).join('') || '<tr><td colspan="5" style="text-align:center; color:var(--muted);">لا توجد اشتراكات مفعلة بتاريخ انتهاء بعد.</td></tr>'}
+          </tbody>
+        </table>
+      </div>`;
+  } else if (activeAdminTab === 'stock') {
+    const svcOpts = config.services.map((s) => `<option value="${s.id}">${s.name}</option>`).join('');
+    body.innerHTML = `
+      <div class="summary-box">
+        <strong>إضافة أكواد جديدة (سطر لكل كود):</strong>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; margin:10px 0;">
+          <select class="form-control" id="stSvc">${svcOpts}</select>
+          <input class="form-control" id="stMonths" type="number" value="1" placeholder="عدد الأشهر" />
+        </div>
+        <textarea class="form-control" id="stCodes" rows="3" placeholder="CODE-1111&#10;CODE-2222"></textarea>
+        <button class="btn btn-primary btn-sm" style="margin-top:8px;" id="addStockBtn">+ حفظ الأكواد في المخزون</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>الخدمة</th><th>المدة</th><th>الكود</th><th>الحالة</th><th>حذف</th></tr></thead>
+          <tbody>
+            ${stock.map((c, idx) => `
+              <tr>
+                <td>${c.serviceId}</td>
+                <td>${c.months} شهر</td>
+                <td style="font-family:monospace;">${c.code}</td>
+                <td><span class="status-pill ${c.status === 'available' ? 'st-completed' : 'st-pending'}">${c.status === 'available' ? 'متوفر' : 'مباع'}</span></td>
+                <td><button class="btn btn-sm btn-danger" data-sdel="${idx}">🗑</button></td>
+              </tr>`).join('') || '<tr><td colspan="5" style="text-align:center; color:var(--muted);">المخزون فارغ.</td></tr>'}
+          </tbody>
+        </table>
+      </div>`;
+  } else if (activeAdminTab === 'promos') {
+    body.innerHTML = `
+      <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
+        <input class="form-control" style="max-width:200px;" id="newPromoCode" placeholder="الكود (مثال: EID15)" />
+        <input class="form-control" style="max-width:140px;" id="newPromoPct" type="number" placeholder="الخصم %" />
+        <button class="btn btn-primary btn-sm" id="addPromoBtn">+ إضافة كود</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>الكود</th><th>الخصم</th><th>الحالة</th><th>إجراء</th></tr></thead>
+          <tbody>
+            ${(config.promos || []).map((p, idx) => `
+              <tr>
+                <td><strong>${p.code}</strong></td>
+                <td>${p.discount}%</td>
+                <td><span class="status-pill ${p.active ? 'st-completed' : 'st-cancelled'}">${p.active ? 'مفعّل' : 'موقوف'}</span></td>
+                <td>
+                  <button class="btn btn-sm" data-ptog="${idx}">تبديل</button>
+                  <button class="btn btn-sm btn-danger" data-pdel="${idx}">حذف</button>
+                </td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  } else if (activeAdminTab === 'services') {
+    body.innerHTML = config.services.map((s, sIdx) => `
+      <div class="summary-box">
+        <strong>${s.name}</strong>
+        ${s.plans.map((p, pIdx) => `
+          <div style="margin-top:8px;">
+            <small style="color:var(--muted)">${p.name}</small>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:4px;">
+              ${Object.entries(p.prices).map(([m, val]) => `
+                <div>
+                  <label style="font-size:0.75rem;">${m} شهر</label>
+                  <input class="form-control" type="number" value="${val}" data-price-edit="${sIdx}:${pIdx}:${m}" />
+                </div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>`).join('') + `<button class="btn btn-primary" id="savePricesBtn">حفظ جميع الأسعار ✓</button>`;
+  } else if (activeAdminTab === 'settings') {
+    body.innerHTML = `
+      <div class="form-group"><label>اسم المتجر</label><input class="form-control" id="cfgName" value="${config.storeName}" /></div>
+      <div class="form-group"><label>رقم WhatsApp (مع رمز الدولة بدون +)</label><input class="form-control" id="cfgWa" value="${config.whatsapp}" /></div>
+      <div class="form-group"><label>شريط الإعلانات العلوي</label><input class="form-control" id="cfgAnn" value="${config.announcement}" /></div>
+      <div class="form-group"><label>نسبة عمولة Flexy (%)</label><input class="form-control" type="number" id="cfgFlexy" value="${config.flexyPercent || 20}" /></div>
+      <div class="form-group"><label>بيانات BaridiMob</label><input class="form-control" id="cfgBaridi" value="${config.payments.baridimob || ''}" /></div>
+      <div class="form-group"><label>بيانات CCP</label><input class="form-control" id="cfgCcp" value="${config.payments.ccp || ''}" /></div>
+      <div class="form-group"><label>بيانات Flexy</label><input class="form-control" id="cfgFlexyTxt" value="${config.payments.flexy || ''}" /></div>
+      <div class="form-group"><label>الرمز السري للوحة التحكم</label><input class="form-control" id="cfgPin" value="${config.adminPin}" /></div>
+      <button class="btn btn-primary" id="saveSettingsBtn">حفظ الإعدادات ✓</button>`;
+  }
+}
+
+function exportOrdersCSV() {
+  const headers = ['OrderID', 'Date', 'Customer', 'Phone', 'Items', 'Total_DA', 'Payment', 'Status'];
+  const rows = orders.map((o) => [
+    o.id, (o.createdAt || '').slice(0, 10), o.customerName, o.customerPhone,
+    `"${(o.itemsSummary || '').replace(/"/g, '""')}"`, o.total, o.paymentMethod, o.status
+  ].join(','));
+  const csv = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `monsieur-sub-sales-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// =========================================================================
+// 8) الأحداث والتفاعلات
+// =========================================================================
+$('servicesGrid').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-act]');
+  if (!btn) return;
+  const act = btn.dataset.act;
+  const svc = btn.dataset.svc;
+  if (act === 'plan') {
+    const s = config.services.find((x) => x.id === svc);
+    const p = s.plans.find((x) => x.id === btn.dataset.plan);
+    selections[svc] = { planId: p.id, months: Number(Object.keys(p.prices)[0] || 1) };
+    renderServices();
+  } else if (act === 'dur') {
+    selections[svc].months = Number(btn.dataset.m);
+    renderServices();
+  } else if (act === 'add') {
+    addToCart(svc, false);
+  } else if (act === 'quick') {
+    addToCart(svc, true);
+  }
+});
+
+$('filterRow').addEventListener('click', (e) => {
+  const b = e.target.closest('.filter-btn');
+  if (!b) return;
+  document.querySelectorAll('.filter-btn').forEach((x) => x.classList.remove('active'));
+  b.classList.add('active');
+  activeCat = b.dataset.cat;
+  renderServices();
+});
+
+$('searchInput').addEventListener('input', (e) => { searchTerm = e.target.value; renderServices(); });
+$('langBtn').addEventListener('click', () => { lang = lang === 'ar' ? 'fr' : 'ar'; applyLang(); });
+$('cartBtn').addEventListener('click', () => { renderCart(); $('cartOverlay').classList.add('open'); });
+$('trackBtn').addEventListener('click', () => $('trackOverlay').classList.add('open'));
+$('adminBtn').addEventListener('click', () => {
+  $('adminOverlay').classList.add('open');
+  if (adminUnlocked) renderAdminBody();
+});
+
+document.querySelectorAll('[data-close]').forEach((b) => {
+  b.addEventListener('click', () => $(b.dataset.close).classList.remove('open'));
+});
+
+$('cartItems').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-cact]');
+  if (!b) return;
+  const idx = Number(b.dataset.idx);
+  if (b.dataset.cact === 'inc') cart[idx].qty += 1;
+  else if (b.dataset.cact === 'dec') {
+    cart[idx].qty -= 1;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  } else if (b.dataset.cact === 'del') cart.splice(idx, 1);
+  saveLocal();
+  updateBadges();
+  renderCart();
+});
+
+$('payMethod').addEventListener('change', renderCart);
+$('applyPromoBtn').addEventListener('click', () => {
+  const code = $('promoInput').value.trim().toUpperCase();
+  const found = (config.promos || []).find((p) => p.active && p.code.toUpperCase() === code);
+  if (found) {
+    appliedPromo = found;
+    $('promoMsg').style.color = '#4ade80';
+    $('promoMsg').textContent = `✓ تم تفعيل خصم ${found.discount}%`;
+  } else {
+    appliedPromo = null;
+    $('promoMsg').style.color = '#f87171';
+    $('promoMsg').textContent = 'كود التخفيض غير صالح أو منتهي.';
+  }
+  renderCart();
+});
+
+$('payChargilyBtn').addEventListener('click', checkoutChargily);
+$('sendOrderBtn').addEventListener('click', checkoutWhatsApp);
+
+$('doTrackBtn').addEventListener('click', async () => {
+  const orderId = $('trackOrderId').value.trim();
+  const phone = $('trackPhone').value.trim();
+  if (!orderId || !phone) return toast('أدخل رقم الطلب ورقم الهاتف');
+  $('trackResult').innerHTML = 'جاري البحث...';
+  try {
+    const res = await fetch(`/api/chargily/order?orderId=${encodeURIComponent(orderId)}&phone=${encodeURIComponent(phone)}`);
+    const data = await res.json();
+    if (!res.ok) $('trackResult').innerHTML = `<div class="summary-box" style="border-color:var(--red);">${data.error || 'الطلب غير موجود'}</div>`;
+    else $('trackResult').innerHTML = renderOrderLookupHtml(data);
+  } catch {
+    $('trackResult').innerHTML = `<div class="summary-box">تعذر الاتصال بالخادم (يعمل بعد النشر على Vercel).</div>`;
+  }
+});
+
+$('adminUnlockBtn').addEventListener('click', () => {
+  if ($('adminPinInput').value === String(config.adminPin)) {
+    adminUnlocked = true;
+    $('adminLockView').style.display = 'none';
+    $('adminPanelView').style.display = 'block';
+    renderAdminBody();
+  } else toast('الرمز السري غير صحيح');
+});
+
+$('adminTabs').addEventListener('click', (e) => {
+  const b = e.target.closest('.admin-tab');
+  if (!b) return;
+  document.querySelectorAll('.admin-tab').forEach((x) => x.classList.remove('active'));
+  b.classList.add('active');
+  activeAdminTab = b.dataset.tab;
+  renderAdminBody();
+});
+
+$('adminBody').addEventListener('click', async (e) => {
+  if (e.target.id === 'addManualSaleBtn') {
+    const box = $('manualSaleBox');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  } else if (e.target.id === 'saveManualSaleBtn') {
+    const months = Math.max(1, Number($('mMonths').value) || 1);
+    const exp = new Date(); exp.setMonth(exp.getMonth() + months);
+    const o = {
+      id: 'MAN-' + Date.now().toString(36).toUpperCase(),
+      customerName: $('mName').value.trim() || 'زبون مباشر',
+      customerPhone: $('mPhone').value.trim() || '0000000000',
+      itemsSummary: $('mItem').value.trim() || 'اشتراك رقمي',
+      months,
+      total: Number($('mTotal').value) || 0,
+      paymentMethod: $('mPay').value,
+      status: 'completed',
+      createdAt: new Date().toISOString(),
+      expiresAt: exp.toISOString()
+    };
+    orders.unshift(o);
+    await syncOrderCloud(o);
+    updateBadges();
+    renderAdminBody();
+    toast('تم تسجيل البيعة بنجاح ✓');
+  } else if (e.target.id === 'exportCsvBtn') {
+    exportOrdersCSV();
+  } else if (e.target.dataset.oact) {
+    const o = orders.find((x) => x.id === e.target.dataset.oid);
+    if (!o) return;
+    if (e.target.dataset.oact === 'complete') {
+      o.status = 'completed';
+      const exp = new Date(); exp.setMonth(exp.getMonth() + (o.months || 1));
+      o.expiresAt = exp.toISOString();
+      const avail = stock.find((c) => c.status === 'available' && (!o.items?.[0]?.serviceId || c.serviceId === o.items[0].serviceId));
+      let codeNote = '';
+      if (avail) {
+        avail.status = 'sold';
+        avail.orderId = o.id;
+        codeNote = `\n🔑 كود التفعيل الخاص بك:\n${avail.code}`;
+      }
+      await syncOrderCloud(o);
+      updateBadges();
+      renderAdminBody();
+      const waMsg = encodeURIComponent(`مرحباً ${o.customerName}، تم تأكيد طلبك (${o.id}) بنجاح!${codeNote}\nشكراً لثقتك في ${config.storeName}.`);
+      window.open(`https://wa.me/${String(o.customerPhone).replace(/^0/, '213')}?text=${waMsg}`, '_blank');
+    } else if (e.target.dataset.oact === 'cancel') {
+      o.status = 'cancelled';
+      await syncOrderCloud(o);
+      updateBadges();
+      renderAdminBody();
+    }
+  } else if (e.target.id === 'addStockBtn') {
+    const svc = $('stSvc').value;
+    const months = Number($('stMonths').value) || 1;
+    const lines = $('stCodes').value.split('\n').map((x) => x.trim()).filter(Boolean);
+    lines.forEach((code) => stock.unshift({ serviceId: svc, months, code, status: 'available', addedAt: new Date().toISOString() }));
+    saveLocal();
+    renderAdminBody();
+    toast(`تمت إضافة ${lines.length} كود للمخزون`);
+  } else if (e.target.dataset.sdel !== undefined) {
+    stock.splice(Number(e.target.dataset.sdel), 1);
+    saveLocal();
+    renderAdminBody();
+  } else if (e.target.id === 'addPromoBtn') {
+    const code = $('newPromoCode').value.trim().toUpperCase();
+    const discount = Number($('newPromoPct').value) || 0;
+    if (!code || discount <= 0) return toast('أدخل الكود ونسبة الخصم');
+    config.promos.push({ code, discount, active: true });
+    await syncConfigCloud();
+    renderAdminBody();
+  } else if (e.target.dataset.ptog !== undefined) {
+    const p = config.promos[Number(e.target.dataset.ptog)];
+    if (p) p.active = !p.active;
+    await syncConfigCloud();
+    renderAdminBody();
+  } else if (e.target.dataset.pdel !== undefined) {
+    config.promos.splice(Number(e.target.dataset.pdel), 1);
+    await syncConfigCloud();
+    renderAdminBody();
+  } else if (e.target.id === 'savePricesBtn') {
+    document.querySelectorAll('[data-price-edit]').forEach((inp) => {
+      const [sIdx, pIdx, m] = inp.dataset.priceEdit.split(':');
+      config.services[sIdx].plans[pIdx].prices[m] = Number(inp.value) || 0;
+    });
+    await syncConfigCloud();
+    renderServices();
+    toast('تم حفظ الأسعار ✓');
+  } else if (e.target.id === 'saveSettingsBtn') {
+    config.storeName = $('cfgName').value.trim() || 'Monsieur Sub';
+    config.whatsapp = $('cfgWa').value.trim();
+    config.announcement = $('cfgAnn').value.trim();
+    config.flexyPercent = Number($('cfgFlexy').value) || 20;
+    config.payments.baridimob = $('cfgBaridi').value.trim();
+    config.payments.ccp = $('cfgCcp').value.trim();
+    config.payments.flexy = $('cfgFlexyTxt').value.trim();
+    config.adminPin = $('cfgPin').value.trim() || '1234';
+    await syncConfigCloud();
+    renderAll();
+    toast('تم حفظ الإعدادات ✓');
+  }
+});
+
+renderAll();
+initFirebaseIfConfigured();
+checkReturnFromChargily();
+</script>
+</body>
+</html>
