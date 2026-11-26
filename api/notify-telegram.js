@@ -1,14 +1,26 @@
 export default async function handler(req, res) {
+  const token = (process.env.TELEGRAM_BOT_TOKEN || "").trim();
+  const chatId = (process.env.TELEGRAM_CHAT_ID || "").trim();
+
   if (req.method === "GET") {
-    const configured = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
-    return res.status(200).json({ ok: true, configured });
+    if (req.query?.test === "1") {
+      if (!token || !chatId) {
+        return res.status(200).json({ ok: false, error: "Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID" });
+      }
+      const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: "✅ اختبار ناجح! بوت إشعارات Monsieur Sub يعمل بنجاح." })
+      });
+      const data = await r.json();
+      return res.status(200).json(data);
+    }
+    return res.status(200).json({ ok: true, configured: Boolean(token && chatId) });
   }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
-
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
     return res.status(200).json({ ok: false, skipped: "Telegram env vars not configured" });
   }
@@ -64,7 +76,7 @@ export default async function handler(req, res) {
     });
 
     const data = await tgRes.json();
-    return res.status(200).json({ ok: Boolean(data.ok) });
+    return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({ ok: false, error: "Failed to notify Telegram" });
   }
