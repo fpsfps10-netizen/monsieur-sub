@@ -1820,13 +1820,6 @@ async function deliverCodeForOrder(orderId) {
   if (!pulled) { notify("لا توجد أكواد متوفرة في المخزون تطابق هذا الطلب."); return; }
   order.deliveredCodes = delivered;
   order.status = "completed";
-  if (entry.source !== "manual") {
-    fetch("/api/notify-telegram", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(entry)
-    }).catch(() => {});
-  }
   if (cloudConnected && ordersColRef && auth?.currentUser) {
     try { await updateDoc(doc(ordersColRef, orderId), { status: "completed", deliveredCodes: delivered }); } catch {}
   }
@@ -1857,6 +1850,20 @@ async function recordOrder(orderData) {
     total: Number(orderData.total) || 0,
     status: ["pending", "completed", "cancelled"].includes(orderData.status) ? orderData.status : "pending"
   };
+  if (entry.source !== "manual") {
+    try {
+      const payload = JSON.stringify(entry);
+      const sent = navigator.sendBeacon && navigator.sendBeacon("/api/notify-telegram", new Blob([payload], { type: "application/json" }));
+      if (!sent) {
+        fetch("/api/notify-telegram", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: payload,
+          keepalive: true
+        }).catch(() => {});
+      }
+    } catch {}
+  }
   if (cloudConnected && ordersColRef && auth?.currentUser) {
     try {
       await addDoc(ordersColRef, entry);
