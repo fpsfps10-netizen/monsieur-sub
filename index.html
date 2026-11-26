@@ -1568,7 +1568,15 @@ try {
 
 /* Firebase Cloud Integration */
 /* To deploy on Vercel/Netlify with your own Firebase project, paste your firebaseConfig object here: */
-const CUSTOM_FIREBASE_CONFIG = null;
+const CUSTOM_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDisFH--cwz52FGGxYIypCD_VunhvJU7y8",
+  authDomain: "monsieur-sub.firebaseapp.com",
+  projectId: "monsieur-sub",
+  storageBucket: "monsieur-sub.firebasestorage.app",
+  messagingSenderId: "792123841633",
+  appId: "1:792123841633:web:4447c1f9a5c3573c891e20",
+  measurementId: "G-54L2ESNJT5"
+};
 let db = null, auth = null, configDocRef = null, ordersColRef = null, codesColRef = null, cloudConnected = false, currentFirebaseUser = null;
 let unsubConfig = null, unsubOrders = null, unsubCodes = null;
 
@@ -2794,6 +2802,17 @@ document.addEventListener("keydown", e => {
     e.preventDefault(); openAdminPanel();
   }
 });
+let logoTapCount = 0, logoTapTimer;
+$$(".brand").forEach(el => el.addEventListener("click", e => {
+  logoTapCount++;
+  clearTimeout(logoTapTimer);
+  logoTapTimer = setTimeout(() => { logoTapCount = 0; }, 2000);
+  if (logoTapCount >= 5) {
+    e.preventDefault();
+    logoTapCount = 0;
+    openAdminPanel();
+  }
+}));
 
 $("adminAuthForm").addEventListener("submit", async e => {
   e.preventDefault();
