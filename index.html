@@ -10,7 +10,7 @@
 <meta property="og:site_name" content="Monsieur Sub">
 <meta property="og:title" content="Monsieur Sub — اشتراكاتك الرقمية في مكان واحد">
 <meta property="og:description" content="اشتراكات Netflix وSpotify وTOD TV وShowflix 1001 وGemini Plus بالدينار الجزائري مع دفع محلي سهل عبر بريدي موب، فليكسي، CCP، Visa وUSDT.">
-<meta property="og:image" content="https://placehold.co/1200x630/090a0e/00e5ff?text=Monsieur+Sub+%E2%80%94+Digital+Subscriptions">
+<meta property="og:image" content="/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <title>Monsieur Sub — اشتراكاتك الرقمية في مكان واحد</title>
 <!-- Custom SVG Favicon matching Monsieur Sub Logo -->
@@ -888,7 +888,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
       <a class="nav-link" href="#faq" data-i18n="nav_faq">الأسئلة الشائعة</a>
     </nav>
     <div class="nav-actions">
-      <button class="btn btn-outline btn-small lang-toggle" id="langToggle" type="button" aria-label="تبديل اللغة">FR</button>
+      <button class="btn btn-outline btn-small lang-toggle" id="langToggle" type="button" aria-label="تبديل اللغة" hidden>FR</button>
       <button class="btn btn-outline btn-small track-trigger" id="openTrack" type="button" aria-haspopup="dialog" aria-label="تتبع طلبي">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-search"/></svg><span data-i18n="nav_track">تتبع طلبي</span>
       </button>
@@ -927,6 +927,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
           <a class="btn btn-outline" href="#how"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg><span data-i18n="hero_cta_2">كيف نبدأ؟</span></a>
         </div>
         <div class="hero-reassurance">
+          <span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg>ضمان كامل طوال المدة</span>
           <span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>بدون بطاقة دولية</span>
           <span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>أسعار واضحة</span>
           <span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>دعم حقيقي 7/7</span>
@@ -943,15 +944,15 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
           <div class="poster-wall">
             <div class="poster">
               <span class="poster-fallback">STRANGER<br>THINGS</span>
-              <img src="https://image.tmdb.org/t/p/w342/56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="" width="342" height="513" decoding="async">
+              <img src="https://image.tmdb.org/t/p/w342/56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="" width="342" height="513" decoding="async" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="poster">
               <span class="poster-fallback">WEDNESDAY</span>
-              <img src="https://image.tmdb.org/t/p/w342/9PFonBhy4cQy7Jz20NpMygczOkv.jpg" alt="" width="342" height="513" decoding="async" fetchpriority="high">
+              <img src="https://image.tmdb.org/t/p/w342/9PFonBhy4cQy7Jz20NpMygczOkv.jpg" alt="" width="342" height="513" decoding="async" fetchpriority="high" onerror="this.style.display='none'">
             </div>
             <div class="poster">
               <span class="poster-fallback">D A R K</span>
-              <img src="https://image.tmdb.org/t/p/w342/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg" alt="" width="342" height="513" decoding="async">
+              <img src="https://image.tmdb.org/t/p/w342/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg" alt="" width="342" height="513" decoding="async" loading="lazy" onerror="this.style.display='none'">
             </div>
           </div>
           <div class="window-bottom"><span>قصص تستحقّ وقتك.</span><span class="quality-label">4K<small>ULTRA<br>HD</small></span></div>
@@ -1124,7 +1125,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> <bdi class="latin" data-brand>Monsieur Sub</bdi>. جميع الحقوق محفوظة.</span>
       <span class="footer-disclaimer">متجر مستقل. أسماء الخدمات وعلاماتها التجارية ملك لأصحابها. الصور توضيحية.</span>
-      <button class="admin-trigger" type="button" id="openAdmin" aria-haspopup="dialog"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gear"/></svg>لوحة التحكم</button>
+      <button class="admin-trigger" type="button" id="openAdmin" aria-haspopup="dialog" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gear"/></svg>لوحة التحكم</button>
     </div>
   </div>
 </footer>
@@ -1249,14 +1250,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
       <button type="submit" class="btn btn-primary" id="adminAuthSubmit">دخول عبر Firebase</button>
       <p class="field-error" id="adminAuthError" hidden></p>
     </form>
-    <div class="admin-login-divider">أو الدخول السريع للمعاينة</div>
-    <form id="adminPinForm">
-      <div class="form-field">
-        <label for="adminPinInput">رمز الدخول السريع (افتراضي: 1234)</label>
-        <input id="adminPinInput" type="password" inputmode="numeric" dir="ltr" placeholder="1234" maxlength="32">
-      </div>
-      <button type="submit" class="btn btn-outline">دخول بالرمز</button>
-    </form>
+
   </div>
 
   <div class="admin-dashboard" id="adminDashboard" hidden>
@@ -1306,7 +1300,6 @@ const DEFAULTS = {
   currency: "DA",
   whatsappNumber: "213555862000",
   instagram: "https://instagram.com/monsieursub",
-  pin: "1234",
   announcement: {
     active: true,
     text: "⚡ تفعيل فوري متاح الآن — الدفع عبر بريدي موب، فليكسي، والبطاقة الذهبية (استعمل كود SUB10 لخصم 10%)"
@@ -1450,7 +1443,6 @@ function normaliseConfig(raw) {
     currency: cleanText(data.currency || "DA", 8),
     whatsappNumber: String(data.whatsappNumber || DEFAULTS.whatsappNumber).replace(/\D/g, "").slice(0, 16),
     instagram: safeURL(data.instagram || DEFAULTS.instagram),
-    pin: String(data.pin || "1234").slice(0, 32),
     announcement: {
       active: Boolean(ann.active),
       text: cleanText(ann.text || "", 240)
@@ -1519,6 +1511,8 @@ function normaliseConfig(raw) {
 const STORE_CONFIG_KEY = "monsieurSubConfigV11";
 const STORE_ORDERS_KEY = "monsieurSubOrdersV1";
 const STORE_CODES_KEY = "monsieurSubCodesV1";
+const STORE_CART_KEY = "monsieurSubCartV1";
+const STORE_CUSTOMER_KEY = "monsieurSubCustomerV1";
 
 let config = normaliseConfig(clone(DEFAULTS));
 try {
@@ -1527,6 +1521,25 @@ try {
 } catch {}
 
 let cart = { items: [], payId: "" };
+try {
+  const savedCart = JSON.parse(localStorage.getItem(STORE_CART_KEY) || "null");
+  if (savedCart && Array.isArray(savedCart.items)) cart = { items: savedCart.items, payId: String(savedCart.payId || "") };
+} catch {}
+function saveCartState() {
+  try { localStorage.setItem(STORE_CART_KEY, JSON.stringify(cart)); } catch {}
+}
+function loadCustomerState() {
+  try {
+    const c = JSON.parse(localStorage.getItem(STORE_CUSTOMER_KEY) || "null");
+    if (!c) return;
+    if (c.name) $("customerName").value = String(c.name).slice(0, 60);
+    if (c.phone) $("customerPhone").value = String(c.phone).slice(0, 24);
+    if (c.note) $("customerNote").value = String(c.note).slice(0, 300);
+  } catch {}
+}
+function saveCustomerState() {
+  try { localStorage.setItem(STORE_CUSTOMER_KEY, JSON.stringify(customerData())); } catch {}
+}
 let selections = {};
 let activeFilter = "all";
 let searchQuery = "";
@@ -2050,7 +2063,7 @@ function cardHTML(service) {
           <a class="btn btn-wa-quick quick-order-btn" data-quick href="#" target="_blank" rel="noopener noreferrer">${icon("wa")}<span>اطلب الآن</span></a>
         </div>
       </div>
-      <p class="buy-assurance">${icon("lock")}تأكيد الطلب والدفع مباشرة عبر WhatsApp</p>
+      <p class="buy-assurance">${icon("shield")}ضمان كامل طوال مدة الاشتراك · تأكيد عبر WhatsApp</p>
     </div>${multi ? tableHTML(service) : ""}</article>`;
 }
 
@@ -2219,6 +2232,7 @@ function addToCart(svcId, planId, months) {
 }
 
 function renderCart() {
+  saveCartState();
   const summary = cartSummary();
   $("cartBadge").textContent = summary.count;
   $("drawerCount").textContent = summary.count ? "(" + summary.count + ")" : "";
@@ -2740,6 +2754,7 @@ $("clearCart").addEventListener("click", () => {
   $(id).removeAttribute("aria-invalid");
   if (id === "customerName") $("nameError").hidden = true;
   if (id === "customerPhone") $("phoneError").hidden = true;
+  saveCustomerState();
 }));
 [$("cartDialog"), $("adminDialog"), $("deliveryDialog"), $("trackDialog")].forEach(dlg => {
   dlg.addEventListener("click", e => {
@@ -2786,7 +2801,7 @@ $("adminAuthForm").addEventListener("submit", async e => {
   const password = $("adminPassword").value;
   $("adminAuthError").hidden = true;
   if (!auth) {
-    $("adminAuthError").textContent = "Firebase غير مفعّل بعد. استخدم رمز الدخول السريع (1234) أدناه.";
+    $("adminAuthError").textContent = "Firebase غير مفعّل بعد. أضف إعدادات مشروعك في CUSTOM_FIREBASE_CONFIG داخل الكود.";
     $("adminAuthError").hidden = false;
     return;
   }
@@ -2805,18 +2820,7 @@ $("adminAuthForm").addEventListener("submit", async e => {
   }
 });
 
-$("adminPinForm").addEventListener("submit", e => {
-  e.preventDefault();
-  if ($("adminPinInput").value === config.pin) {
-    adminAuthed = true;
-    $("adminPinInput").value = "";
-    openAdminPanel();
-    notify("تم الدخول إلى لوحة التحكم.");
-  } else {
-    $("adminAuthError").textContent = "الرمز غير صحيح.";
-    $("adminAuthError").hidden = false;
-  }
-});
+
 
 $("adminLogoutBtn").addEventListener("click", async () => {
   adminAuthed = false;
@@ -3017,7 +3021,7 @@ function renderAdminBody() {
       config.services.map((s, si) => `<details class="admin-service" data-admin-service="${escapeHTML(s.id)}"${openAdminServices.has(s.id) || (!openAdminServices.size && si === 0) ? " open" : ""}><summary><span><bdi>${escapeHTML(s.name)}</bdi></span><small>${s.plans.length} عروض · ${s.plans.reduce((a, p) => a + p.durations.length, 0)} مدد</small></summary><div class="admin-service-content"><div class="admin-grid">${adminField("اسم الخدمة", `services.${si}.name`, s.name)}${adminField("الوصف القصير", `services.${si}.tagline`, s.tagline)}${selectField("القسم", `services.${si}.category`, s.category, [["video","أفلام ومسلسلات"],["music","موسيقى"],["sports","رياضة"],["ai","ذكاء اصطناعي"],["other","خدمات أخرى"]])}${adminField("شارة الخدمة", `services.${si}.badge`, s.badge)}${adminField("اللون", `services.${si}.color`, s.color, "color")}${adminField("رابط شعار بديل (اختياري)", `services.${si}.logoUrl`, s.logoUrl, "url")}</div><label class="admin-checkbox"><input type="checkbox" data-path="services.${si}.featured" data-kind="boolean"${s.featured ? " checked" : ""}>عرض مميّز بحجم أكبر</label>${s.plans.map((p, pi) => `<div class="admin-plan"><div class="admin-plan-head"><h4>العرض ${pi + 1}</h4><button type="button" class="btn btn-danger btn-small" data-admin-action="remove-plan" data-si="${si}" data-pi="${pi}">حذف العرض</button></div><div class="admin-grid">${adminField("اسم العرض", `services.${si}.plans.${pi}.name`, p.name)}${adminField("وصف العرض", `services.${si}.plans.${pi}.hint`, p.hint)}</div>${adminField("ملاحظة الأجهزة", `services.${si}.plans.${pi}.notice`, p.notice, "textarea")}<div class="admin-prices-head"><span>المدة (0=24س)</span><span>السعر (${escapeHTML(config.currency)})</span><span>الحالة</span><span></span></div>${p.durations.map((d, di) => `<div class="admin-price-row"><input type="number" min="0" max="60" step="1" data-path="services.${si}.plans.${pi}.durations.${di}.months" data-kind="months" value="${d.months}"><input type="number" min="0" max="10000000" step="any" data-path="services.${si}.plans.${pi}.durations.${di}.price" data-kind="price" value="${d.price === null ? "" : d.price}" placeholder="حسب الطلب"><label class="admin-unavail-toggle"><input type="checkbox" data-path="services.${si}.plans.${pi}.durations.${di}.unavailable" data-kind="boolean"${d.unavailable ? " checked" : ""}>غير متوفر</label><button class="icon-button" type="button" data-admin-action="remove-duration" data-si="${si}" data-pi="${pi}" data-di="${di}">${icon("close")}</button></div>`).join("")}<button type="button" class="btn btn-outline btn-small" data-admin-action="add-duration" data-si="${si}" data-pi="${pi}">${icon("plus")}إضافة مدة</button></div>`).join("")}<div class="admin-actions-row"><button type="button" class="btn btn-outline btn-small" data-admin-action="add-plan" data-si="${si}">${icon("plus")}إضافة عرض</button><button type="button" class="btn btn-danger btn-small" data-admin-action="remove-service" data-si="${si}">حذف الخدمة</button></div></div></details>`).join("") +
       `<button type="button" class="btn btn-primary btn-small" data-admin-action="add-service">${icon("plus")}إضافة منتج جديد</button>`;
   } else if (adminTab === "settings") {
-    $("adminBody").innerHTML = `<div class="admin-card"><h3>شريط الإعلانات العلوي</h3><label class="admin-checkbox"><input type="checkbox" data-path="announcement.active" data-kind="boolean"${config.announcement?.active ? " checked" : ""}>إظهار شريط الإعلانات أعلى الموقع</label>${adminField("نص الإعلان", "announcement.text", config.announcement?.text || "")}</div><div class="admin-card"><h3>هوية المتجر والتواصل</h3><div class="admin-grid">${adminField("اسم المتجر", "brand", config.brand)}${adminField("رمز العملة", "currency", config.currency)}${adminField("رقم WhatsApp الدولي (بدون +)", "whatsappNumber", config.whatsappNumber, "tel")}${adminField("رابط Instagram", "instagram", config.instagram, "url")}${adminField("رمز الدخول السريع", "pin", config.pin, "password")}</div></div><div class="admin-card"><h3>نسخة احتياطية (JSON)</h3><div class="admin-actions-row"><button type="button" class="btn btn-outline btn-small" data-admin-action="export">${icon("download")}تصدير JSON</button><button type="button" class="btn btn-outline btn-small" data-admin-action="import">استيراد JSON</button></div></div><div class="admin-card admin-dangers"><h3>استعادة الإعدادات الأصلية</h3><button type="button" class="btn btn-danger btn-small" data-admin-action="reset">استعادة الافتراضي</button></div>`;
+    $("adminBody").innerHTML = `<div class="admin-card"><h3>شريط الإعلانات العلوي</h3><label class="admin-checkbox"><input type="checkbox" data-path="announcement.active" data-kind="boolean"${config.announcement?.active ? " checked" : ""}>إظهار شريط الإعلانات أعلى الموقع</label>${adminField("نص الإعلان", "announcement.text", config.announcement?.text || "")}</div><div class="admin-card"><h3>هوية المتجر والتواصل</h3><div class="admin-grid">${adminField("اسم المتجر", "brand", config.brand)}${adminField("رمز العملة", "currency", config.currency)}${adminField("رقم WhatsApp الدولي (بدون +)", "whatsappNumber", config.whatsappNumber, "tel")}${adminField("رابط Instagram", "instagram", config.instagram, "url")}</div></div><div class="admin-card"><h3>نسخة احتياطية (JSON)</h3><div class="admin-actions-row"><button type="button" class="btn btn-outline btn-small" data-admin-action="export">${icon("download")}تصدير JSON</button><button type="button" class="btn btn-outline btn-small" data-admin-action="import">استيراد JSON</button></div></div><div class="admin-card admin-dangers"><h3>استعادة الإعدادات الأصلية</h3><button type="button" class="btn btn-danger btn-small" data-admin-action="reset">استعادة الافتراضي</button></div>`;
   } else if (adminTab === "payments") {
     $("adminBody").innerHTML = config.payments.map((p, pi) => `<div class="admin-card"><div class="admin-grid">${adminField("اسم وسيلة الدفع", `payments.${pi}.name`, p.name)}${adminField("الاسم اللاتيني", `payments.${pi}.subtitle`, p.subtitle)}${adminField("رقم الحساب (اتركه فارغًا للإرسال عبر واتساب)", `payments.${pi}.number`, p.number)}${adminField("نسبة العمولة (%)", `payments.${pi}.surchargePercent`, p.surchargePercent, "number", "fee")}</div>${adminField("التعليمات", `payments.${pi}.details`, p.details, "textarea")}<button class="btn btn-danger btn-small" type="button" data-admin-action="remove-payment" data-index="${pi}">حذف الوسيلة</button></div>`).join("") + `<button type="button" class="btn btn-primary btn-small" data-admin-action="add-payment">${icon("plus")}إضافة وسيلة دفع</button>`;
   } else {
@@ -3220,11 +3224,15 @@ $("importSettings").addEventListener("change", async e => {
 });
 
 /* Initial Render & Cloud Connection */
+loadCustomerState();
 refreshAllUI();
 updatePendingBadge();
 updateCodesBadge();
 initFirebase();
 checkReturnedChargilyOrder();
+if (new URLSearchParams(window.location.search).get("admin") === "1" || window.location.hash === "#admin") {
+  openAdminPanel();
+}
 </script>
 </body>
 </html>
