@@ -1853,15 +1853,15 @@ async function recordOrder(orderData) {
   if (entry.source !== "manual") {
     try {
       const payload = JSON.stringify(entry);
-      const sent = navigator.sendBeacon && navigator.sendBeacon("/api/notify-telegram", new Blob([payload], { type: "application/json" }));
-      if (!sent) {
+      await Promise.race([
         fetch("/api/notify-telegram", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: payload,
           keepalive: true
-        }).catch(() => {});
-      }
+        }).catch(() => {}),
+        new Promise(r => setTimeout(r, 1800))
+      ]);
     } catch {}
   }
   if (cloudConnected && ordersColRef && auth?.currentUser) {
@@ -2683,7 +2683,10 @@ $("servicesGrid").addEventListener("click", e => {
     return;
   }
 
-  if (e.target.closest("[data-quick]")) {
+  const quickLink = e.target.closest("[data-quick]");
+  if (quickLink) {
+    e.preventDefault();
+    const targetHref = quickLink.href;
     const lineTotal = (duration.price || 0) * screens;
     trackPixel("Contact", { content_name: service.name, value: lineTotal, currency: "DZD" });
     recordOrder({
@@ -2694,7 +2697,7 @@ $("servicesGrid").addEventListener("click", e => {
       items: [{ svcId: service.id, serviceName: service.name, planId: plan.id, planName: plan.name, months: duration.months, qty: screens, price: duration.price || 0 }],
       total: lineTotal,
       status: "pending"
-    });
+    }).finally(() => { window.location.href = targetHref; });
   }
 });
 
@@ -2761,13 +2764,17 @@ $("checkoutPayments").addEventListener("change", e => {
   renderOrderReview();
 });
 
-$("sendOrder").addEventListener("click", e => {
-  if (!cartSummary().count) { e.preventDefault(); setCheckoutStep(0); return; }
-  if (!validateCustomer()) { e.preventDefault(); setCheckoutStep(1, true); return; }
-  if (!cart.payId) { e.preventDefault(); $("paymentError").hidden = false; return; }
+$("sendOrder").addEventListener("click", async e => {
+  e.preventDefault();
+  if (!cartSummary().count) { setCheckoutStep(0); return; }
+  if (!validateCustomer()) { setCheckoutStep(1, true); return; }
+  if (!cart.payId) { $("paymentError").hidden = false; return; }
   const summary = cartSummary(), cust = customerData();
+  const targetUrl = waURL(orderMessage());
+  $("sendOrder").href = targetUrl;
   trackPixel("InitiateCheckout", { value: summary.total, currency: "DZD", num_items: summary.count });
-  recordOrder({
+  notify("جاري تسجيل الطلب وفتح WhatsApp...");
+  await recordOrder({
     source: "cart-wa",
     customerName: cust.name,
     customerPhone: cust.phone,
@@ -2785,8 +2792,7 @@ $("sendOrder").addEventListener("click", e => {
     total: summary.total,
     status: "pending"
   });
-  $("sendOrder").href = waURL(orderMessage());
-  notify("رسالتك جاهزة وتم تسجيل الطلب. أرسلها في WhatsApp لتأكيد الطلب.");
+  window.location.href = targetUrl;
 });
 $("payChargilyBtn").addEventListener("click", payWithChargily);
 $("closeDelivery").addEventListener("click", () => {
