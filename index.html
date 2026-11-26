@@ -262,6 +262,15 @@ html[dir="ltr"] .search-box .icon{right:auto;left:11px}
 .duration-button .duration-discount.unavail-badge{font-family:var(--font);background:#2a171b;color:#ff9ba3;border-color:#5e2a33}
 
 /* Service Buy Row */
+
+.screens-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.screen-btn{min-height:54px;border:1px solid var(--line-strong);border-radius:9px;background:#0d0e13;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px 4px;transition:.2s}
+.screen-btn:hover{border-color:#fff5}
+.screen-btn b{font-size:12.5px;font-weight:700}
+.screen-btn small{font-size:10px;color:var(--muted)}
+.screen-btn.selected{background:rgba(243,59,71,.12);border-color:var(--red);color:#fff}
+.screen-btn.selected small{color:#ff9ba3}
+
 .service-buy{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:21px;padding-top:18px;border-top:1px solid var(--line);flex-wrap:wrap}
 .service-price-label{font-size:10px;color:var(--muted);margin-bottom:1px}
 .service-price{display:flex;align-items:baseline;gap:6px;line-height:1.1}
@@ -712,6 +721,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
 .track-form{display:flex;flex-direction:column;gap:12px;text-align:start;margin-bottom:16px}
 .track-form .form-field{margin-bottom:0}
 
+
 /* Responsive */
 @media(max-width:1080px){
   .container{width:calc(100% - 48px)}
@@ -1016,7 +1026,7 @@ dialog::backdrop{background:rgba(3,4,8,.72);backdrop-filter:blur(7px);-webkit-ba
         <span class="kicker">نعاونك تختار صح</span>
         <h2><span class="latin">TV</span> ولا <span class="latin">Téléphone / PC</span>؟<br>الفرق، ببساطة.</h2>
         <p>اختيار عرض Netflix يعتمد على وين تحب تشوف. إذا تستعمل التلفاز، حتى أحيانًا، عرض <b class="latin">Pour TV</b> هو اختيارك.</p>
-        <div class="household-note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-info"/></svg><span>التلفاز مرتبط بنفس المنزل <bdi class="latin">(Household)</bdi>. كل عرض يتضمّن شاشة واحدة في الوقت نفسه.</span></div>
+        <div class="household-note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-info"/></svg><span>السعر مخصّص لشاشة واحدة (بروفايل خاص باسمك + كود PIN) لشخص واحد فقط. لشخصين تحتاج اشتراك شاشتين (السعر ×2)، ولـ 3 أشخاص 3 شاشات (السعر ×3). التلفاز مرتبط بنفس المنزل <bdi class="latin">(Household)</bdi>، ومشاركة البروفايل تُسقط الضمان.</span></div>
       </div>
       <div class="guide-choices">
         <p class="quiz-question">وين راك حاب تشوف Netflix؟</p>
@@ -1313,14 +1323,14 @@ const DEFAULTS = {
       category: "video", featured: true, color: "#f33b47", logoUrl: "", badge: "الأكثر طلبًا",
       plans: [
         {
-          id: "tv", name: "Pour TV", hint: "التلفاز + الهاتف + الكمبيوتر", icon: "tv",
-          notice: "شاشة واحدة في الوقت نفسه. التلفاز ضمن نفس المنزل (Household).", noticeType: "info",
+          id: "tv", name: "Pour TV", hint: "بروفايل خاص باسمك + PIN · شاشة واحدة (التلفاز + الهاتف + الكمبيوتر)", icon: "tv",
+          notice: "بروفايل خاص باسمك محمي بكود PIN لشخص واحد فقط (شاشة واحدة). لشخصين اختر شاشتين (×2)، ولـ 3 أشخاص اختر 3 شاشات (×3). التلفاز ضمن نفس المنزل (Household)، ومشاركة البروفايل تُسقط الضمان.", noticeType: "warning",
           devices: [{icon:"tv",label:"التلفاز",ok:true},{icon:"phone",label:"الهاتف",ok:true},{icon:"pc",label:"الكمبيوتر",ok:true}],
           durations: [{months:1,price:800},{months:2,price:1300},{months:3,price:2000},{months:6,price:3900},{months:12,price:5500}]
         },
         {
-          id: "mobile", name: "Pour Téléphone / PC", hint: "للهاتف والكمبيوتر فقط", icon: "phone",
-          notice: "هذا العرض لا يعمل على التلفاز. تستعمل TV؟ اختر عرض Pour TV.", noticeType: "warning",
+          id: "mobile", name: "Pour Téléphone / PC", hint: "بروفايل خاص باسمك + PIN · للهاتف والكمبيوتر فقط", icon: "phone",
+          notice: "بروفايل خاص باسمك محمي بكود PIN لشخص واحد فقط (لا يعمل على التلفاز). لشخصين اختر شاشتين (×2)، ولـ 3 أشخاص اختر 3 شاشات (×3). يُمنع مشاركة البروفايل وإلا يسقط الضمان.", noticeType: "warning",
           devices: [{icon:"tv",label:"التلفاز",ok:false},{icon:"phone",label:"الهاتف",ok:true},{icon:"pc",label:"الكمبيوتر",ok:true}],
           durations: [{months:1,price:500},{months:2,price:900},{months:3,price:1300},{months:6,price:2000},{months:12,price:3900}]
         }
@@ -1417,7 +1427,8 @@ const DEFAULTS = {
     {id:"usdt", name:"USDT (Binance)", subtitle:"Binance Pay / TRC20", icon:"bolt", number:"", surchargePercent:0, details:"دفع فوري عبر Binance Pay أو شبكة TRC20. نرسل لك المعرّف عند تأكيد الطلب."}
   ],
   faq: [
-    {q:"أستعمل التلفاز، أي عرض Netflix أختار؟", a:"اختر العرض الأول Pour TV. هو المخصّص للتلفاز ضمن نفس المنزل (Household)، ويمكنك استخدامه أيضًا على الهاتف والكمبيوتر. يتضمّن العرض شاشة واحدة في الوقت نفسه."},
+    {q:"هل سعر Netflix لشاشة واحدة؟ وما شروط الضمان؟", a:"نعم، السعر الأساسي هو لشاشة واحدة (بروفايل خاص باسمك + كود PIN) لشخص واحد فقط. إذا كنت تحتاج الاشتراك لشخصين فاختر شاشتين (السعر ×2)، ولـ 3 أشخاص اختر 3 شاشات (السعر ×3). يُمنع مشاركة نفس البروفايل مع أشخاص آخرين وإلا يسقط الضمان تلقائيًا."},
+    {q:"أستعمل التلفاز، أي عرض Netflix أختار؟", a:"اختر العرض الأول Pour TV. هو المخصّص للتلفاز ضمن نفس المنزل (Household)، ويمكنك استخدامه أيضًا على الهاتف والكمبيوتر عبر بروفايلك الخاص (شاشة واحدة لشخص واحد فقط)."},
     {q:"هل يعمل عرض Téléphone / PC على التلفاز؟", a:"لا. هذا العرض مخصّص للهاتف والكمبيوتر والتابلت فقط. إذا تشاهد على التلفاز ولو أحيانًا، اختر Pour TV."},
     {q:"ما الفرق بين عرضَي TOD TV؟", a:"عرض «شاشة Full HD» يعمل على تلفاز واحد فقط. أما «حساب كامل Full HD» فيمكنك تثبيته على 5 أجهزة وتشغيله لشخصين في نفس الوقت."},
     {q:"كيف أستفيد من تجريب Showflix 1001 لمدة 24 ساعة؟", a:"اختر مدة «24 ساعة» في بطاقة Showflix 1001 بسعر 100 DA بالفلكسي (بدون أي رسوم إضافية) وأكمل الطلب عبر WhatsApp لنرسل لك رقم الفليكسي وبيانات التجريب فورًا."},
@@ -1809,6 +1820,13 @@ async function deliverCodeForOrder(orderId) {
   if (!pulled) { notify("لا توجد أكواد متوفرة في المخزون تطابق هذا الطلب."); return; }
   order.deliveredCodes = delivered;
   order.status = "completed";
+  if (entry.source !== "manual") {
+    fetch("/api/notify-telegram", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entry)
+    }).catch(() => {});
+  }
   if (cloudConnected && ordersColRef && auth?.currentUser) {
     try { await updateDoc(doc(ordersColRef, orderId), { status: "completed", deliveredCodes: delivered }); } catch {}
   }
@@ -2013,7 +2031,7 @@ function ensureSelection(service) {
   if (!state || !service.plans.some(p => p.id === state.planId)) {
     const firstPlan = service.plans[0];
     const firstAvail = firstPlan.durations.find(d => !d.unavailable) || firstPlan.durations[0];
-    state = { planId: firstPlan.id, months: firstAvail.months };
+    state = { planId: firstPlan.id, months: firstAvail.months, screens: 1 };
     selections[service.id] = state;
   }
   const plan = service.plans.find(p => p.id === state.planId);
@@ -2022,6 +2040,7 @@ function ensureSelection(service) {
     const avail = plan.durations.find(d => !d.unavailable) || plan.durations[0];
     state.months = avail.months;
   }
+  if (!state.screens || state.screens < 1) state.screens = 1;
   return { state, plan, duration: plan.durations.find(d => d.months === state.months) };
 }
 
@@ -2033,9 +2052,11 @@ function savingPercentage(plan, duration) {
   return Math.max(0, Math.round((1 - duration.price / (baseRate * duration.months)) * 100));
 }
 
-function quickOrderMessage(service, plan, duration) {
-  const priceLine = duration.price === null ? "السعر: حسب الطلب" : "السعر: " + currencyText(duration.price) + (duration.note ? " (" + duration.note + ")" : "");
-  return `مرحبًا ${config.brand} 👋\nأريد طلب الاشتراك التالي مباشرة:\n\n• ${service.name} — ${plan.name}\n• المدة: ${durationLabel(duration.months)}\n• ${priceLine}\n\nيرجى تأكيد التوفّر وتفاصيل الدفع.`;
+function quickOrderMessage(service, plan, duration, screens = 1) {
+  const total = duration.price === null ? null : duration.price * screens;
+  const screensLine = service.id === "netflix" ? `\n• عدد الشاشات: ${screens === 1 ? "شاشة واحدة (شخص 1)" : screens === 2 ? "شاشتان (×2 — شخصان)" : "3 شاشات (×3 — 3 أشخاص)"}` : "";
+  const priceLine = total === null ? "السعر: حسب الطلب" : "السعر: " + currencyText(total) + (duration.note ? " (" + duration.note + ")" : "");
+  return `مرحبًا ${config.brand} 👋\nأريد طلب الاشتراك التالي مباشرة:\n\n• ${service.name} — ${plan.name}\n• المدة: ${durationLabel(duration.months)}${screensLine}\n• ${priceLine}\n\nيرجى تأكيد التوفّر وتفاصيل الدفع.`;
 }
 
 function tableHTML(service) {
@@ -2064,6 +2085,7 @@ function cardHTML(service) {
     <div class="service-main">${plans}
       <div class="option-label"><span>${multi ? '<bdi class="step-number">02</bdi>' : ""}مدة الاشتراك</span><small class="saving-label" data-saving hidden></small></div>
       <div class="duration-options" data-durations role="group" aria-label="مدة الاشتراك"></div>
+      ${service.id === "netflix" ? `<div class="option-label" style="margin-top:16px"><span><bdi class="step-number">03</bdi>عدد الشاشات (البروفايلات)</span></div><div class="screens-picker" role="group" aria-label="عدد الشاشات"><button type="button" class="screen-btn selected" data-screens="1" aria-pressed="true"><b>شاشة واحدة</b><small>شخص واحد</small></button><button type="button" class="screen-btn" data-screens="2" aria-pressed="false"><b>شاشتان (×2)</b><small>شخصان</small></button><button type="button" class="screen-btn" data-screens="3" aria-pressed="false"><b>3 شاشات (×3)</b><small>3 أشخاص</small></button></div>` : ""}
       <div class="service-buy">
         <div><p class="service-price-label">السعر الإجمالي</p><div class="service-price" data-price aria-live="polite"><strong></strong><span class="currency"></span></div><small class="service-period" data-period></small></div>
         <div class="service-actions">
@@ -2104,19 +2126,27 @@ function updateCard(service) {
   const savingLabel = card.querySelector("[data-saving]");
   savingLabel.hidden = maxSaving <= 0;
   savingLabel.textContent = "وفّر حتى " + maxSaving + "%";
+  const screens = service.id === "netflix" ? (state.screens || 1) : 1;
+  $$("[data-screens]", card).forEach(btn => {
+    const sel = Number(btn.dataset.screens) === screens;
+    btn.classList.toggle("selected", sel);
+    btn.setAttribute("aria-pressed", String(sel));
+  });
+  const totalPrice = duration.price === null ? null : duration.price * screens;
   const priceEl = card.querySelector("[data-price]");
   const isUnavail = !!duration.unavailable;
-  priceEl.classList.toggle("unknown", isUnavail || duration.price === null);
-  priceEl.querySelector("strong").textContent = isUnavail ? "غير متوفر حاليًا" : duration.price === null ? "السعر حسب الطلب" : formatNumber(duration.price);
-  priceEl.querySelector(".currency").textContent = isUnavail || duration.price === null ? "" : config.currency;
+  priceEl.classList.toggle("unknown", isUnavail || totalPrice === null);
+  priceEl.querySelector("strong").textContent = isUnavail ? "غير متوفر حاليًا" : totalPrice === null ? "السعر حسب الطلب" : formatNumber(totalPrice);
+  priceEl.querySelector(".currency").textContent = isUnavail || totalPrice === null ? "" : config.currency;
   const periodPrefix = duration.months === 0 ? durationLabel(duration.months) : "لمدة " + durationLabel(duration.months);
-  card.querySelector("[data-period]").textContent = isUnavail ? "اختر مدة أخرى متوفرة" : duration.price === null ? "نؤكّد لك السعر قبل الدفع" : periodPrefix + (duration.note ? " — " + duration.note : "");
+  const screensSuffix = service.id === "netflix" && screens > 1 ? ` · ${screens === 2 ? "شاشتان (×2)" : "3 شاشات (×3)"}` : "";
+  card.querySelector("[data-period]").textContent = isUnavail ? "اختر مدة أخرى متوفرة" : totalPrice === null ? "نؤكّد لك السعر قبل الدفع" : periodPrefix + screensSuffix + (duration.note ? " — " + duration.note : "");
   const addBtn = card.querySelector("[data-add]");
   addBtn.disabled = isUnavail;
-  addBtn.querySelector("span").textContent = duration.price === null ? "اطلب اشتراكك" : "أضف إلى السلة";
+  addBtn.querySelector("span").textContent = totalPrice === null ? "اطلب اشتراكك" : "أضف إلى السلة";
   const quickBtn = card.querySelector("[data-quick]");
   quickBtn.hidden = isUnavail;
-  quickBtn.href = waURL(quickOrderMessage(service, plan, duration));
+  quickBtn.href = waURL(quickOrderMessage(service, plan, duration, screens));
   $$("[data-table-plan]", card).forEach(btn => {
     const sel = btn.dataset.tablePlan === plan.id && Number(btn.dataset.tableMonth) === state.months;
     btn.classList.toggle("selected", sel);
@@ -2222,13 +2252,13 @@ function totalDescription(summary) {
   return currencyText(summary.total) + promoTag + feeTag + (summary.unknown ? " + اشتراكات بسعر قيد التأكيد" : "");
 }
 
-function addToCart(svcId, planId, months) {
-  const next = validItem({ svcId, planId, months, qty: 1 });
+function addToCart(svcId, planId, months, qty = 1) {
+  const next = validItem({ svcId, planId, months, qty });
   if (!next) return;
   const existing = cart.items.find(i => itemKey(i) === itemKey(next));
   if (existing) {
-    if (existing.qty >= 10) { notify("الحد الأقصى 10 وحدات من العرض نفسه."); return; }
-    existing.qty++;
+    if (existing.qty + next.qty > 10) { notify("الحد الأقصى 10 وحدات من العرض نفسه."); return; }
+    existing.qty += next.qty;
   } else cart.items.push(next);
   const svc = config.services.find(s => s.id === svcId);
   const dur = svc?.plans.find(p => p.id === planId)?.durations.find(d => d.months === months);
@@ -2632,20 +2662,30 @@ $("servicesGrid").addEventListener("click", e => {
     return;
   }
 
+  const scrBtn = e.target.closest("[data-screens]");
+  if (scrBtn) {
+    state.screens = Number(scrBtn.dataset.screens) || 1;
+    updateCard(service);
+    return;
+  }
+
+  const screens = service.id === "netflix" ? (state.screens || 1) : 1;
+
   if (e.target.closest("[data-add]")) {
-    addToCart(service.id, plan.id, duration.months);
+    addToCart(service.id, plan.id, duration.months, screens);
     return;
   }
 
   if (e.target.closest("[data-quick]")) {
-    trackPixel("Contact", { content_name: service.name, value: duration.price || 0, currency: "DZD" });
+    const lineTotal = (duration.price || 0) * screens;
+    trackPixel("Contact", { content_name: service.name, value: lineTotal, currency: "DZD" });
     recordOrder({
       source: "quick-wa",
       customerName: "طلب سريع (واتساب)",
       customerPhone: "—",
       paymentName: "WhatsApp",
-      items: [{ svcId: service.id, serviceName: service.name, planId: plan.id, planName: plan.name, months: duration.months, qty: 1, price: duration.price || 0 }],
-      total: duration.price || 0,
+      items: [{ svcId: service.id, serviceName: service.name, planId: plan.id, planName: plan.name, months: duration.months, qty: screens, price: duration.price || 0 }],
+      total: lineTotal,
       status: "pending"
     });
   }
