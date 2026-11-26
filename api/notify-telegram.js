@@ -1,4 +1,8 @@
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
+  if (req.method === "GET") {
+    const configured = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
+    return res.status(200).json({ ok: true, configured });
+  }
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -10,7 +14,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const order = req.body || {};
+    const order = typeof req.body === "string" ? JSON.parse(req.body) : (req.body || {});
     const name = String(order.customerName || "زبون").slice(0, 80);
     const phone = String(order.customerPhone || "—").slice(0, 30);
     const payment = String(order.paymentName || "WhatsApp").slice(0, 60);
@@ -18,8 +22,7 @@ module.exports = async function handler(req, res) {
     const total = Number(order.total) || 0;
     const sourceMap = {
       "cart-wa": "🛒 سلة الموقع",
-      "quick-wa": "⚡ طلب سريع",
-      "bundle-wa": "🎁 باقة مجمّعة"
+      "quick-wa": "⚡ طلب سريع"
     };
     const sourceLabel = sourceMap[order.source] || "🛍️ طلب جديد";
 
@@ -30,19 +33,19 @@ module.exports = async function handler(req, res) {
       : "• تفاصيل غير محدّدة";
 
     const lines = [
-      `🔔 *طلب جديد في Monsieur Sub*`,
+      `🔔 طلب جديد في Monsieur Sub`,
       `المصدر: ${sourceLabel}`,
       ``,
-      `👤 *الزبون:* ${name}`,
-      `📞 *الهاتف:* ${phone}`,
-      `💳 *الدفع:* ${payment}`,
+      `👤 الزبون: ${name}`,
+      `📞 الهاتف: ${phone}`,
+      `💳 الدفع: ${payment}`,
       ``,
-      `📦 *الاشتراكات:*`,
+      `📦 الاشتراكات:`,
       itemsText,
       ``,
-      `💰 *الإجمالي:* ${total.toLocaleString("en-US")} DA`
+      `💰 الإجمالي: ${total.toLocaleString("en-US")} DA`
     ];
-    if (note) lines.push(`📝 *ملاحظة:* ${note}`);
+    if (note) lines.push(`📝 ملاحظة: ${note}`);
 
     const cleanPhone = phone.replace(/\D/g, "");
     if (/^(0[567]\d{8}|213[567]\d{8})$/.test(cleanPhone)) {
@@ -56,7 +59,6 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         chat_id: chatId,
         text: lines.join("\n"),
-        parse_mode: "Markdown",
         disable_web_page_preview: true
       })
     });
@@ -66,4 +68,4 @@ module.exports = async function handler(req, res) {
   } catch (err) {
     return res.status(500).json({ ok: false, error: "Failed to notify Telegram" });
   }
-};
+}
